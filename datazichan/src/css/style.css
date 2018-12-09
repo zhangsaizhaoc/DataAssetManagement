@@ -1,0 +1,22 @@
+*{
+    padding:  0;
+    margin: 0;
+    list-style: none;
+}
+html,body,#app{
+    width: 100%;
+    height: 100%;
+}
+#app{
+    display: flex;
+    justify-content: space-between;
+    background: #F5F6FA;
+}
+#app .left{
+    background: #fff;
+    width: 250px;
+    height: 100%;
+}
+#app .right{
+    flex: 1;
+}
