@@ -1,0 +1,96 @@
+#DataDistributionFlow{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0 0;
+    box-sizing: border-box;
+}
+#DataDistributionFlow .left,.right,.center{
+    flex:1;
+    background: #F5F6FA;
+    height: auto;
+}
+.left,.center{
+    border-right: dashed 1px #9FBFF8;
+}
+.left h5,.right h5,.center h5,.main{
+    width: 100%;
+    color:#4E4E4E;
+    font-size: 14px;
+    text-align: center;
+}
+.main{
+    width: 100%;
+    padding: 35px 0 0;
+    box-sizing: border-box;
+}
+.left .main h6,.right .main h6{
+    width: 120px;
+    height: 47px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    
+}
+.center .main h6{
+    width: 120px;
+    height: 45px;
+    background: #DAE8FF;
+    text-align: center;
+    color:#4D8DFF ;
+    border:1px solid #4D8DFF;
+    border-radius:4px; 
+    line-height:45px;
+    margin:0 auto;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+.left p,.right p,.center p{
+    width: 130px;
+    height: 45px;
+    line-height: 45px;
+    background: #FFFFFF;
+    border: 1px solid #778199;
+    border-radius: 4px;
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    color:#778199;
+    text-align: center;
+    font-size: 14px;
+    
+}
+.left p span,.right p span,.center p span{
+    height: 26px;
+    line-height: 26px;
+    background: #D8F2DF;
+    padding: 0 10px;
+    border: 1px solid #6ED088;
+    border-radius: 4px;
+    position: absolute;
+    font-size: 14px;
+    color:#5AC476 ;
+    right:0;
+    bottom:-19px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+.center p b{
+    position: absolute;
+    width: 1px;
+    height: 40px;
+    background: #778199;
+    top:-41px;
+    left:50%;
+    margin-left: -0.5px;
+    z-index: 5;
+}
+.center p em,.left p em{
+    position: absolute;
+    width: 180%;
+    height: 1px;
+    background: #778199;
+    right:-180%;
+    z-index:0;
+    top:50%;
+    margin-top: -0.5px;
+}

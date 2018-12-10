@@ -20,9 +20,6 @@
             <el-tab-pane label="版本信息" name="third">
                 <VersionInformation></VersionInformation>
             </el-tab-pane>
-            <el-tab-pane label="数据分布流向信息" name="fourth">
-                <DataDistributionFlow></DataDistributionFlow>
-            </el-tab-pane>
         </el-tabs>
     </div>
   </div>
@@ -38,16 +35,16 @@
     name: 'Index',
     data() {
       return {
-        activeName: 'first',//tab切换默认显示第一个
-        arr:[],//面包屑数据
+        activeName: 'first',
+        arr:[],
         textTitle:''
       }
     },
     components:{
-        BasicInformation,//基础信息
-        ExtendedInformation,//扩展信息
-        VersionInformation,//版本信息
-        DataDistributionFlow//数据分布流向信息
+        BasicInformation,
+        ExtendedInformation,
+        VersionInformation,
+        DataDistributionFlow
     },
     mounted() {
         this.arr=this.$route.query.arr;
@@ -67,5 +64,5 @@
 </script>
 
 <style scoped>
-  @import './index.style.css';
+  @import './Supplier.style.css';
 </style>

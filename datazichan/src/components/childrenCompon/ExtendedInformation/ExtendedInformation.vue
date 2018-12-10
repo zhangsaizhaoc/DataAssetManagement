@@ -25,8 +25,8 @@
             dataType: "json",
             method: 'GET',
             data: {
-              "classificationid":"5",
-              "dataentityname": "数据实体",
+              "classificationid":this.$route.query.data.parentid,
+              "dataentityname": this.$route.query.data.name,
               "dataattributetype": "扩展属性"
             },
             success: function(data) {
