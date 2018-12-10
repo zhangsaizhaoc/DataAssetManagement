@@ -6,18 +6,17 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item v-for='(item,index) in arr' :key='index'>{{item}}</el-breadcrumb-item>
-            
         </el-breadcrumb>
     </div>
     <div class="bottom">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="基础信息" name="first">
+            <el-tab-pane label="业务属性" name="first">
                 <BasicInformation></BasicInformation>
             </el-tab-pane>
-            <el-tab-pane label="扩展信息" name="second">
+            <el-tab-pane label="管理属性" name="second">
                 <ExtendedInformation></ExtendedInformation>
             </el-tab-pane>
-            <el-tab-pane label="版本信息" name="third">
+            <el-tab-pane label="技术属性" name="third">
                 <VersionInformation></VersionInformation>
             </el-tab-pane>
         </el-tabs>
@@ -27,10 +26,9 @@
 
 <script>
   import $ from 'jquery';
-  import BasicInformation from '../childrenCompon/BasicInformation/BasicInformation'
-  import ExtendedInformation from '../childrenCompon/ExtendedInformation/ExtendedInformation'
-  import VersionInformation from '../childrenCompon/VersionInformation/VersionInformation'
-  import DataDistributionFlow from '../childrenCompon/DataDistributionFlow/DataDistributionFlow'
+  import BasicInformation from '../SupplierChildrenCompon/BasicInformation/BasicInformation'
+  import ExtendedInformation from '../SupplierChildrenCompon/ExtendedInformation/ExtendedInformation'
+  import VersionInformation from '../SupplierChildrenCompon/VersionInformation/VersionInformation'
   export default {
     name: 'Index',
     data() {
@@ -44,7 +42,6 @@
         BasicInformation,
         ExtendedInformation,
         VersionInformation,
-        DataDistributionFlow
     },
     mounted() {
         this.arr=this.$route.query.arr;

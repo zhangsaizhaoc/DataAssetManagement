@@ -93,6 +93,14 @@
               data:data
             }
           });
+        }else if(data.status==2){
+          this.$router.push({
+            path:'/Supplier',
+            query:{
+              arr:_this.arr,
+              data:data
+            }
+          });
         }
       }
     }
