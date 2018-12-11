@@ -5,7 +5,7 @@
 
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item v-for='(item,index) in arr' :key='index'>{{item}}</el-breadcrumb-item>
+            <el-breadcrumb-item v-for='(item,index) in arr' :key='index' v-if='item'>{{item}}</el-breadcrumb-item>
             
         </el-breadcrumb>
     </div>
@@ -52,6 +52,7 @@
     mounted() {
         this.arr=this.$route.query.arr;
     },
+    inject:['reload'],
     computed:{
 
     },

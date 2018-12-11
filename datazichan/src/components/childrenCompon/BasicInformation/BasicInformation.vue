@@ -16,6 +16,7 @@
     data() {
       return {
         data2:[],
+        id:0,
       }
     },
     mounted() {
@@ -35,7 +36,7 @@
                 _this.data2=data.data.length>0?data.data:[];
             }
         })
-
+      
     },
     computed:{
 

@@ -11,7 +11,7 @@
       </el-tree>
     </div>
     <div class="right">
-      <router-view></router-view>
+      <router-view v-if="isRouterAlive"></router-view>
     </div>
   </div>
 </template>
@@ -20,8 +20,14 @@
   import $ from 'jquery'
   export default {
     name: 'App',
+    provide(){
+      return {
+        reload: this.reload
+      }
+    },
     data() {
       return {
+        isRouterAlive: true,
         data:[{//默认树形菜单
           id: 1,
           name: "能源板块",
@@ -61,6 +67,10 @@
       
     },
     methods: {
+      reload () {
+        this.isRouterAlive = false
+        this.$nextTick(() => (this.isRouterAlive = true))
+      },
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
         console.log(node)
@@ -81,11 +91,18 @@
       },
       /*----树形菜单点击----*/
        handleNodeClick(data) {
-        console.log(data);
+        console.log(data.path.split(','));
         var _this=this;
-        this.arr.push(data.name)
-        console.log(this.$router.push)
+        if(data.name!=="能源板块"){
+          this.arr=data.path.split(',')
+        }
+        
+        if(this.arr.indexOf(data.name) == -1){//判断是否重复
+            this.arr.push(data.name)
+        }
+        
         if(data.status==1){//当状态为1时，跳转到index路由
+        console.log(this.arr)
           this.$router.push({
             path:'/Index',
             query:{

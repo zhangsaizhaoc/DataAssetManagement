@@ -1,6 +1,5 @@
 <template>
   <div id="BasicInformation">
-    业务属性
         <ul>
             <li>
                 <span>所属数据实体</span>

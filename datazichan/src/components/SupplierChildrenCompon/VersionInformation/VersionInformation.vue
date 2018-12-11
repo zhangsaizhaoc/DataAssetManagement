@@ -1,28 +1,58 @@
 <template>
   <div id="VersionInformation">
-    技术
-        <!--<ul>
+        <ul>
             <li>
-                <span>版本号</span>
-                <span>{{data.maintenanceversion}}</span>
+                <span>所属数据实体</span>
+                <span>{{data.dataentityname}}</span>
             </li>
             <li>
-                <span>创建\变更时间</span>
-                <span>{{data.operationtime}}</span>
+                <span>属性名称</span>
+                <span>{{data.dataattributename}}</span>
             </li>
             <li>
-                <span>创建\变更人</span>
-                <span>{{data.operator}}</span>
+                <span>所在系统</span>
+                <span>{{data.system}}</span>
+                <span>数据量</span>
+                <span>{{data.datasize}}</span>
             </li>
             <li>
-                <span>变更内容描述</span>
-                <span>{{data.modifydescription}}</span>
+                <span>数据库名</span>
+                <span>{{data.databasename}}</span>
+                <span>数据表名</span>
+                <span>{{data.databasetablename}}</span>
             </li>
             <li>
-                <span>变更原因说明</span>
-                <span>{{data.modifyreason}}</span>
+                <span>英文名</span>
+                <span>{{data.fieldnameEn}}</span>
+                <span>中文名</span>
+                <span>{{data.fieldnameCn}}</span>
             </li>
-        </ul>-->
+            <li>
+                <span>字段类型</span>
+                <span>{{data.datatype}}</span>
+                <span>字段长度</span>
+                <span>{{data.datalength}}</span>
+            </li>
+            <li>
+                <span>值域</span>
+                <span>{{data.datarange}}</span>
+                <span>安全等级</span>
+                <span>{{data.securityclassification}}</span>
+            </li>
+            <li>
+                <span>来源系统</span>
+                <span>{{data.systemSour}}</span>
+                <span>来源字段名称</span>
+                <span>{{data.dataattributenameSour}}</span>
+            </li>
+            <li>
+                <span>去向系统</span>
+                <span>{{data.systemGo}}</span>
+                <span>去向字段名称</span>
+                <span>{{data.dataattributenameGo}}</span>
+            </li>
+            
+        </ul>
   </div>
 </template>
 
@@ -98,10 +128,13 @@
     color:#778199;
     font-size:14px;
   }
-  #VersionInformation ul li span:first-child{
+  #VersionInformation ul li span:first-child,#VersionInformation ul li span:nth-child(3){
     width:120px;
     padding-left:20px;
     box-sizing: border-box
+  }
+  #VersionInformation ul li span:nth-child(2n){
+      flex:1
   }
    #VersionInformation ul li span:last-child{
        flex:1;
