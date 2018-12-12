@@ -11,18 +11,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'AssetContentCreation',
-      component: AssetContentCreation
+      name: 'HelloWorld',
+      component: HelloWorld
     },
     {
       path: '/Index',
       name: 'Index',
-      component:resolve => require([`@/components/index/index`], resolve),
+      component:Index,
     },
     {
       path: '/Supplier',
       name: 'Supplier',
       component: Supplier
+    },
+    {
+      path: '/AssetContentCreation',
+      name: 'AssetContentCreation',
+      component: AssetContentCreation
     }
   ]
 })

@@ -1,5 +1,5 @@
 <template>
-  <div id="Index">
+  <div id="Supplier">
     <div class="top">
     <h2>{{this.$route.query.data.name}}</h2>
 
@@ -30,7 +30,7 @@
   import ExtendedInformation from '../SupplierChildrenCompon/ExtendedInformation/ExtendedInformation'
   import VersionInformation from '../SupplierChildrenCompon/VersionInformation/VersionInformation'
   export default {
-    name: 'Index',
+    name: 'Supplier',
     data() {
       return {
         activeName: 'first',

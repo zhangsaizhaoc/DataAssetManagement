@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 48px;
 }
 .top h5{
     font-size: 24px;
@@ -40,8 +41,9 @@
 }
 
 
-.upload-demo{
+.upload{
     width: 40%;
+    height: 60%;
     background: #fff;
     border-radius: 8px;
     padding: 20px;
@@ -51,5 +53,190 @@
     top:0;
     bottom:0;
     margin: auto;
-    height: 200px;
+}
+.upload p{
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    color: #778199;
+    line-height: 30px;
+}
+.upload h6{
+    font-family: 'PingFangSC-Medium';
+    font-size: 14px;
+    font-weight: 100;
+    color: #778199;
+    letter-spacing: 0;
+    margin-bottom: 26px;
+}
+.upload-demo{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+.upload-demo .el-upload{
+    flex: 1;
+    height: 100%;
+}
+.upload-demo .el-upload .el-button.el-button--primary.el-button--small{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    background: #fff;
+    font-size: 12px;
+    color: #B7BBC3;
+    text-align: left;
+}
+.upload-demo .el-button.el-button--success{
+    width: 68px;
+    height: 34px;
+    background: #1D6DFC;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.upload-demo ul{
+    position: absolute;
+    left:0;
+}
+.upload-demo ul li.el-upload-list__item:first-child{
+    margin-top: 0;
+}
+.download{
+    width: 100%;
+    
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 0 0 15px;
+    margin-bottom: 14px;
+    border: 1px solid #F5F6FA;
+}
+.download a{
+    font-size: 12px;
+    color: #1D6DFC;
+    text-decoration: none;
+}
+.list {
+    width: 100%;
+}
+.list li{
+    font-size: 12px;
+    color: #8C9098;
+    line-height: 22px;
+}
+.list li:first-child{
+    font-size: 12px;
+    color: #778199;
+}
+.bottom{
+    width: 100%;
+    box-sizing: border-box;
+}
+.bottom .box{
+    padding: 20px 26px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #E3E7F1;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.box h4{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #010F35;
+}
+.box ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.box ul li{
+    width: 28%;
+    margin-left: 6px;
+    margin-bottom: 30px;
+}
+.box ul li h5{
+    font-size: 12px;
+    color: #778199;
+    line-height: 18px;
+    margin-bottom: 6px;
+}
+.el-dropdown{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    box-sizing: border-box;
+    
+}
+
+.box ul li .el-dropdown span{
+    display: inline-block;
+    padding-left: 10px;
+    width:100%;
+    height: 100%;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+.el-dropdown .el-dropdown-link i{
+    position: absolute;
+    right:0;
+    width: 28px;
+    height: 28px;
+    background: #F5F6FA;
+    line-height: 30px;
+    text-align: center;
+}
+.box ul li input{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.box:nth-child(2) ul li{
+    width: 46%;
+}
+.box:nth-child(2) ul li textarea{
+    width: 100%;
+    height: 100%;
+}
+.box:last-child ul li{
+    width: 20%;
+}
+.btn{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+.btn button{
+    width: 68px;
+    height: 34px;
+    border:0;
+    margin-left: 20px;
+}
+.btn button:first-child{
+    background: #1D6DFC;
+    color:#fff;
+    border-radius: 2px;
+}
+.btn button:nth-child(2){
+    background: #FFFFFF;
+    font-size: 12px;
+    color: #778199;
+    border-radius: 2px;
+    border: 1px solid #778199;
+}
+.btn button:last-child{
+    border: 1px solid #778199;
+    border-radius: 2px;
+    background: #F5F6FA;
 }

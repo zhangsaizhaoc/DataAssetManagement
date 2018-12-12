@@ -1,14 +1,22 @@
 <template>
   <div id="app">
     <div class="left">
-      <el-tree
-        :data="data"
-        :props="props1"
-        :load="loadNode1"
-        lazy
-        @node-click="handleNodeClick"
-      >
-      </el-tree>
+      <ul>
+        <li ref='clicka' @click='fnc'>
+          <h6><i class='el-icon-caret-right'></i> 数据资产查询</h6>
+          <el-tree
+            :data="data"
+            :props="props1"
+            :load="loadNode1"
+            lazy
+            @node-click="handleNodeClick"
+          >
+          </el-tree>
+        </li>
+        <li>数据资产分类维护</li>
+        <li><router-link to="/AssetContentCreation">数据资产内容创建</router-link></li>
+        <li>数据资产内容变更</li>
+      </ul>
     </div>
     <div class="right">
       <router-view v-if="isRouterAlive"></router-view>
@@ -40,6 +48,7 @@
           isLeaf: 'leaf'
         },
         arr:[],//面包屑传值
+        flag:false,
       }
     },
     mounted() {
@@ -67,6 +76,20 @@
       
     },
     methods: {
+      fnc(){
+        console.log(this.$refs.clicka)
+        if(this.flag){
+          this.$refs.clicka.style.height='40px';
+          this.$refs.clicka.querySelector('h6').querySelector('i').className='el-icon-caret-right'
+          this.flag=false;
+        }else{
+
+          this.$refs.clicka.style.height='auto';
+          this.$refs.clicka.querySelector('h6').querySelector('i').className='el-icon-caret-bottom'
+          this.flag=true;
+        }
+      },
+
       reload () {
         this.isRouterAlive = false
         this.$nextTick(() => (this.isRouterAlive = true))
@@ -74,8 +97,11 @@
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
         console.log(node)
-        console.log(resolve)
+        console.log(node.data.status)
         var _this = this;
+        if (node.data.status >= 2){
+           return resolve([])
+        };
         setTimeout(() => {
           $.ajax({
           url: "/datagovern/classification/findMenu",
@@ -91,7 +117,6 @@
       },
       /*----树形菜单点击----*/
        handleNodeClick(data) {
-        console.log(data.path.split(','));
         var _this=this;
         if(data.name!=="能源板块"){
           this.arr=data.path.split(',')
@@ -110,6 +135,7 @@
               data:data
             }
           });
+          this.reload()
         }else if(data.status==2){
           this.$router.push({
             path:'/Supplier',
@@ -118,7 +144,9 @@
               data:data
             }
           });
+          this.reload()
         }
+        
       }
     }
   }
