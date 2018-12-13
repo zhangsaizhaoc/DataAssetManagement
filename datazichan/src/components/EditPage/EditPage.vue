@@ -1,5 +1,5 @@
 <template>
-    <div id='AssetContentCreation'>
+    <div id='EditPage'>
         <div class="top">
             <h5>创建</h5>
             <h6>
@@ -70,11 +70,11 @@
                         </li>
                         <li>
                             <h5>数据实体</h5>
-                            <input type="text" class='dataentityname' >
+                            <input type="text" class='dataentityname' v-model="obj1.dataentityname" >
                         </li>
                         <li>
                             <h5>数据属性名称</h5>
-                            <input type="text" class='dataattributetype'>
+                            <input type="text" class='dataattributename' v-model="obj1.dataattributename">
                         </li>
                         <li>
                             <h5>数据属性类型</h5>
@@ -98,11 +98,11 @@
                     <ul>
                         <li>
                             <h5>业务定义</h5>
-                           <textarea name="yewudingyi" id="" class='businessdefinition' cols="30" rows="5"></textarea>
+                           <textarea name="yewudingyi" id="" class='businessdefinition' cols="30" rows="5" v-model="obj1.businessdefinition"></textarea>
                         </li>
                         <li>
                             <h5>业务规则</h5>
-                            <textarea name="yewuguize" id="" class='businessrule' cols="30" rows="5"></textarea>
+                            <textarea name="yewuguize" id="" class='businessrule' cols="30" rows="5" v-model="obj1.businessrule"></textarea>
                         </li>
                     </ul>
                 </div>
@@ -113,15 +113,15 @@
                     <ul>
                         <li>
                             <h5>数据所属组织部门</h5>
-                            <input type="text" class='departmentname'>
+                            <input type="text" class='departmentname' v-model="obj1.departmentname">
                         </li>
                         <li>
                             <h5>数据负责人</h5>
-                            <input type="text" class='dataownername'>
+                            <input type="text" class='dataownername' v-model="obj1.dataownername">
                         </li>
                         <li>
                             <h5>引用标准</h5>
-                            <input type="text" class='quotedstandard'>
+                            <input type="text" class='quotedstandard' v-model="obj1.quotedstandard">
                         </li>
                         <li>
                             <h5>采集方式</h5>
@@ -151,7 +151,6 @@
                                     <el-dropdown-item command="小时">小时</el-dropdown-item>
                                     <el-dropdown-item command="实时">实时</el-dropdown-item>
                                     <el-dropdown-item command="不定时">不定时</el-dropdown-item>
-                                    
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </li>
@@ -159,61 +158,61 @@
                     </ul>
                 </div>
             </div>
-            <div class="box">
+            <div class="box boxim">
                 <h4>技术信息</h4>
                 <div class="inbox">
                     <ul>
                         <li>
                             <h5>所在系统</h5>
-                            <input type="text" class='system'>
+                            <input type="text" class='system' v-model="obj1.system">
                         </li>
                         <li>
                             <h5>数据量</h5>
-                            <input type="text" class='datasize'>
+                            <input type="text" class='datasize' v-model="obj1.datasize">
                         </li>
                         <li>
                             <h5>数据库名</h5>
-                            <input type="text" class='databasename'>
+                            <input type="text" class='databasename' v-model="obj1.databasename">
                         </li>
                         <li>
                             <h5>数据表名</h5>
-                            <input type="text" class='databasetablename'>
+                            <input type="text" class='databasetablename' v-model="obj1.databasetablename">
                         </li>
                         <li>
                             <h5>字段英文名</h5>
-                            <input type="text" class='fieldnameEn'>
+                            <input type="text" class='fieldnameEn' v-model="obj1.fieldnameEn">
                         </li>
                         <li>
                             <h5>字段中文名</h5>
-                            <input type="text" class="fieldnameCn">
+                            <input type="text" class="fieldnameCn" v-model="obj1.fieldnameCn">
                         </li>
                         <li>
                             <h5>数据类型</h5>
-                            <input type="text" class='datatype'>
+                            <input type="text" class='datatype' v-model="obj1.datatype">
                         </li>
                         <li>
                             <h5>数据长度</h5>
-                            <input type="text" class='datalength'>
+                            <input type="text" class='datalength' v-model="obj1.datalength">
                         </li>
                         <li>
                             <h5>数据值域</h5>
-                            <input type="text" class='datarange'>
+                            <input type="text" class='datarange' v-model="obj1.datarange">
                         </li>
                         <li>
                             <h5>来源系统</h5>
-                            <input type="text" class='systemSour'>
+                            <input type="text" class='systemSour' v-model="obj1.systemSour">
                         </li>
                         <li>
                             <h5>来源字段名</h5>
-                            <input type="text" class='dataattributenameSour'>
+                            <input type="text" class='dataattributenameSour' v-model="obj1.dataattributenameSour">
                         </li>
                         <li>
                             <h5>去向系统</h5>
-                            <input type="text" class='systemGo'>
+                            <input type="text" class='systemGo' v-model="obj1.systemGo">
                         </li>
                         <li>
                             <h5>去向字段名</h5>
-                            <input type="text" class='dataattributenameGo'>
+                            <input type="text" class='dataattributenameGo' v-model="obj1.dataattributenameGo">
                         </li>
                         <li>
                             <h5>数据安全等级</h5>
@@ -225,12 +224,27 @@
                                     <el-dropdown-item command="有条件共享">有条件共享</el-dropdown-item>
                                     <el-dropdown-item command="无条件共享">无条件共享</el-dropdown-item>
                                     <el-dropdown-item command="不共享">不共享</el-dropdown-item>
-                                   
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </li>
                         <li></li>
                         <li></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="box last">
+                <h4>变更信息说明</h4>
+                <div class="inbox">
+                    <ul>
+                        <li>
+                            <h5>变更内容描述</h5>
+                           <textarea name="yewudingyi" id="" class='modifydescription' cols="30" rows="5"     v-model="obj1.modifydescription"></textarea>
+                        </li>
+                        <li>
+                            <h5>变更原因说明</h5>
+                            <textarea name="yewuguize" id="" class='modifyreason' cols="30" rows="5" v-model="obj1.modifyreason"></textarea>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -277,7 +291,7 @@
 <script>
     import $ from 'jquery'
     export default{
-        name:'AssetContentCreation',
+        name:'EditPage',
         data(){
             return{
                 flag:false,
@@ -298,6 +312,9 @@
                 textVal8:'下拉列表',
                 textVal9:'下拉列表',
                 getdat:[],
+                obj1:{
+                   
+                },
                 obj:{
                     "businessdefinition": "供应商名称在财务系统中定义",//业务定义
                     "quotedstandard": "《新奥集团供应商信息编码及属性规范》",//引用标准
@@ -309,7 +326,7 @@
                     "firstClassificationID": 3,//一级业务域
                     "systemSour": "B",//来源系统
                     "thirdClassificationID": 6,//三级业务域
-                    "datasize": "xxxx",//数据量
+                    "datasize": "xxxx",//数据s量
                     "dataownername": "管理员",//数据责任人
                     "datalength": 100,//数据长度
                     "fourthClassificationID": 8,//四级业务域
@@ -329,7 +346,6 @@
                     "securityclassification": "无条件共享",//安全等级
                     "systemGo": "A"//去想系统
                 }
-
             }
         },
         mounted() {
@@ -346,8 +362,222 @@
                     _this.data=data.data?data.data:[]
                 }
             })
+            $.ajax({
+                url: "/datagovern/contentbaseinfo/findDetail",
+                dataType: "json",
+                method: 'GET',
+                data: {
+                    "maintenanceid":_this.$route.query.id
+                },
+                success: function(data) {
+                    console.log(data);
+                    _this.obj1=data.data;
+                    _this.obj1.maintenanceid=_this.$route.query.id;
+                    _this.Assignment(data.data)
+                }
+            })
+        },
+        watch:{
+            "obj1.dataentityname":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.dataattributename":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.departmentname":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.dataownername":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.quotedstandard":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.system":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.datasize":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.databasename":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.databasetablename":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.fieldnameEn":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.fieldnameCn":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.datatype":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.datalength":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.datarange":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.systemSour":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.dataattributenameSour":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.systemGo":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.dataattributenameGo":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.businessdefinition":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.businessrule":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.modifydescription":function(newVal,oldVal){
+                return newVal;
+            },
+            "obj1.modifyreason":function(newVal,oldVal){
+                return newVal;
+            },
         },
         methods:{
+            getDataAx(datas){
+                var _this=this;
+                 $.ajax({
+                    url: "/datagovern/contentbaseinfo/findByParent",
+                    dataType: "json",
+                    method: 'GET',
+                    data: {
+                        "parentclassificationid":0
+                    },
+                    success: function(data) {
+                    console.log(data);
+                        data.data?data.data.forEach((item,index)=>{
+                            if(item.classificationid==datas.professionalPlateID){
+                                _this.textVal1=item.classificationname;
+                            }
+                        }):[]
+                        _this.data=data.data?data.data:[]
+                    }
+                });
+                if(datas.firstClassificationID){
+                    console.log(datas.firstClassificationID)
+                    $.ajax({
+                        url: "/datagovern/contentbaseinfo/findByParent",
+                        dataType: "json",
+                        method: 'GET',
+                        data:{
+                            "parentclassificationid":datas.professionalPlateID
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            data.data?data.data.forEach((item,index)=>{
+                                if(item.classificationid==datas.firstClassificationID){
+                                    _this.textVal2=item.classificationname;
+                                }
+                            }):[]
+                            _this.data1=data.data;
+                        }
+                    })
+                }
+                
+                if(datas.secondClassificationID){
+                    $.ajax({
+                        url: "/datagovern/contentbaseinfo/findByParent",
+                        dataType: "json",
+                        method: 'GET',
+                        data:{
+                            "parentclassificationid":datas.firstClassificationID
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            data.data?data.data.forEach((item,index)=>{
+                                if(item.classificationid==datas.secondClassificationID){
+                                    _this.textVal3=item.classificationname;
+                                }
+                            }):[]
+                            _this.data2=data.data;
+                        }
+                    })
+                }
+                
+                if(datas.thirdClassificationID){
+                    $.ajax({
+                        url: "/datagovern/contentbaseinfo/findByParent",
+                        dataType: "json",
+                        method: 'GET',
+                        data:{
+                            "parentclassificationid":datas.secondClassificationID
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            data.data?data.data.forEach((item,index)=>{
+                                if(item.classificationid==datas.thirdClassificationID){
+                                    _this.textVal4=item.classificationname;
+                                }
+                            }):[]
+                            _this.data3=data.data;
+                        }
+                    })
+                }
+                
+                if(datas.fourthClassificationID){
+                    $.ajax({
+                        url: "/datagovern/contentbaseinfo/findByParent",
+                        dataType: "json",
+                        method: 'GET',
+                        data:{
+                            "parentclassificationid":datas.thirdClassificationID
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            data.data?data.data.forEach((item,index)=>{
+                                if(item.classificationid==datas.classificationid){
+                                    _this.textVal5=item.classificationname;
+                                }
+                            }):[]
+                            _this.data4=data.data;
+                        }
+                    })
+                }
+                
+            },
+            Assignment(data){
+                var data=data?data:{}
+                this.textVal6=data.dataattributetype;
+                this.textVal7=data.acquisitiongeometry;
+                this.textVal8=data.acquisitionfrequency;
+                this.textVal9=data.datarange;
+                this.obj1.dataentityname=data.dataentityname;
+                this.obj1.dataattributename=data.dataattributename;
+                this.obj1.departmentname=data.departmentname;
+                this.obj1.departmentname=data.departmentname;
+                this.obj1.dataownername=data.dataownername;
+                this.obj1.quotedstandard=data.quotedstandard;
+                this.obj1.system=data.system;
+                this.obj1.datasize=data.datasize;
+                this.obj1.databasename=data.databasename;
+                this.obj1.databasetablename=data.databasetablename;
+                this.obj1.fieldnameEn=data.fieldnameEn;
+                this.obj1.fieldnameCn=data.fieldnameCn;
+                this.obj1.datatype=data.datatype;
+                this.obj1.datalength=data.datalength;
+                this.obj1.datarange=data.datarange;
+                this.obj1.systemSour=data.systemSour;
+                this.obj1.dataattributenameSour=data.dataattributenameSour;
+                this.obj1.systemGo=data.systemGo;
+                this.obj1.dataattributenameGo=data.dataattributenameGo;
+                this.obj1.businessdefinition=data.businessdefinition;
+                this.obj1.businessrule=data.businessrule;
+                this.obj1.modifydescription=data.modifydescription;
+                this.obj1.modifyreason=data.modifyreason;
+                this.getDataAx(data)
+            },
             open(data) {
                 var teval='';
                 var teval2='';
@@ -364,48 +594,32 @@
             },
             /*----提交----*/
             Submission(){
-                var inp=$('.box input');
                 var _this=this;
-                var itexta=$('.box textarea');
-                for(var i=0;i<inp.length;i++){
-                    this.obj[inp[i].className]=inp[i].value;
-                }
-                for(var i=0;i<itexta.length;i++){
-                    this.obj[itexta[i].className]=itexta[i].value;
-                }
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/submit",
                     dataType: "json",
                     method: 'GET',
-                    data: _this.obj,
+                    data: _this.obj1,
                     success: function(data) {
                         console.log(data);
                         _this.open(data);
                     }
                 })
-                console.log(this.obj)
+                console.log(this.obj1)
             },
             /*----保存----*/
             Preservation(){
-                var inp=$('.box input');
-                var itexta=$('.box textarea');
                 var _this=this;
-                console.log('--------保存-------')
-                for(var i=0;i<inp.length;i++){
-                    this.obj[inp[i].className]=inp[i].value;
-                }
-                for(var i=0;i<itexta.length;i++){
-                    this.obj[itexta[i].className]=itexta[i].value;
-                }
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/create",
                     dataType: "json",
                     method: 'GET',
-                    data: _this.obj,
+                    data: _this.obj1,
                     success: function(data) {
                         console.log(data);
                     }
                 })
+                console.log(_this.obj1)
             },
             /*----取消----*/
             cancel(){
@@ -431,7 +645,7 @@
                 return _this.getdat
             },
             /*----下拉框----*/
-             handleCommand1(command) {
+            handleCommand1(command) {
                 console.log(command);
                 var _this=this;
                 this.data1=[];
@@ -442,7 +656,7 @@
                 this.textVal3='下拉列表';
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
-                this.obj.professionalPlateID=command.classificationid;
+                this.obj1.professionalPlateID=command.classificationid;
                 this.textVal1=command.classificationname
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/findByParent",
@@ -467,7 +681,7 @@
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
                 this.textVal2=command.classificationname;
-                 this.obj.firstClassificationID=command.classificationid;
+                 this.obj1.firstClassificationID=command.classificationid;
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/findByParent",
                     dataType: "json",
@@ -489,7 +703,7 @@
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
                 this.textVal3=command.classificationname
-                this.obj.secondClassificationID=command.classificationid;
+                this.obj1.secondClassificationID=command.classificationid;
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/findByParent",
                     dataType: "json",
@@ -508,7 +722,7 @@
                 this.data4=[];
                 this.textVal5='下拉列表';
                 this.textVal4=command.classificationname
-                this.obj.thirdClassificationID=command.classificationid;
+                this.obj1.thirdClassificationID=command.classificationid;
                 $.ajax({
                     url: "/datagovern/contentbaseinfo/findByParent",
                     dataType: "json",
@@ -525,23 +739,23 @@
             },
             handleCommand5(command) {
                 this.textVal5=command.classificationname;
-                this.obj.fourthClassificationID=command.classificationid;
+                this.obj1.fourthClassificationID=command.classificationid;
             },
             handleCommand6(command) {
                 this.textVal6=command;
-                this.obj.dataattributetype=command;
+                this.obj1.dataattributetype=command;
             },
             handleCommand7(command) {
                 this.textVal7=command;
-                this.obj.acquisitiongeometry=command;
+                this.obj1.acquisitiongeometry=command;
             },
             handleCommand8(command) {
                 this.textVal8=command;
-                this.obj.acquisitionfrequency=command;
+                this.obj1.acquisitionfrequency=command;
             },
             handleCommand9(command) {
                 this.textVal9=command;
-                this.obj.securityclassification=command;
+                this.obj1.securityclassification=command;
             },
             /*----导入成功----*/
             handleSuccess(response, file, fileList){
@@ -646,7 +860,7 @@
     }
 </script>
 <style scoped>
-@import './AssetContentCreation.style.css';
+@import './EditPage.style.css';
  .el-dropdown-link {
     cursor: pointer;
     color: #778199;

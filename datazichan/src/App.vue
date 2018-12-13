@@ -15,7 +15,7 @@
         </li>
         <li>数据资产分类维护</li>
         <li><router-link to="/AssetContentCreation">数据资产内容创建</router-link></li>
-        <li>数据资产内容变更</li>
+        <li><router-link to="/DataAssetChange">数据资产内容变更</router-link></li>
       </ul>
     </div>
     <div class="right">

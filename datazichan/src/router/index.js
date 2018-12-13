@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Index from '@/components/index/index'// 数据实体页
 import Supplier from '@/components/Supplier/Supplier'//
 import AssetContentCreation from '@/components/AssetContentCreation/AssetContentCreation'//
+import DataAssetChange from '@/components/DataAssetChange/DataAssetChange'//
+import EditPage from '@/components/EditPage/EditPage'//
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/AssetContentCreation',
       name: 'AssetContentCreation',
       component: AssetContentCreation
-    }
+    },
+    {
+      path: '/DataAssetChange',
+      name: 'DataAssetChange',
+      component: DataAssetChange
+    },
+    {
+      path: '/EditPage',
+      name: 'EditPage',
+      component: EditPage
+    },
   ]
 })

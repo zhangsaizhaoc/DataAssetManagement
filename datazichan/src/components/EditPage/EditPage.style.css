@@ -1,0 +1,244 @@
+#EditPage{
+    width: 100%;
+    height: auto;
+    padding:40px;
+    box-sizing: border-box;
+}
+#EditPage .top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+}
+.top h5{
+    font-size: 24px;
+    color:#4E4E4E;
+}
+.top h6{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top h6 span {
+    width: 88px;
+    height: 34px;
+    border: 1px solid #778199;
+    border-radius: 2px;
+    font-size: 12px ;
+    color:#778199;
+    line-height: 34px;
+    text-align: center;
+    margin-left: 10px;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background: rgba(78,78,78,0.20);
+}
+
+
+.upload{
+    width: 40%;
+    height: 60%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin: auto;
+}
+.upload p{
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    color: #778199;
+    line-height: 30px;
+}
+.upload h6{
+    font-family: 'PingFangSC-Medium';
+    font-size: 14px;
+    font-weight: 100;
+    color: #778199;
+    letter-spacing: 0;
+    margin-bottom: 26px;
+}
+.upload-demo{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+.upload-demo .el-upload{
+    flex: 1;
+    height: 100%;
+}
+.upload-demo .el-upload .el-button.el-button--primary.el-button--small{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    background: #fff;
+    font-size: 12px;
+    color: #B7BBC3;
+    text-align: left;
+}
+.upload-demo .el-button.el-button--success{
+    width: 68px;
+    height: 34px;
+    background: #1D6DFC;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+.upload-demo ul{
+    position: absolute;
+    left:0;
+}
+.upload-demo ul li.el-upload-list__item:first-child{
+    margin-top: 0;
+}
+.download{
+    width: 100%;
+    
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 0 0 15px;
+    margin-bottom: 14px;
+    border: 1px solid #F5F6FA;
+}
+.download a{
+    font-size: 12px;
+    color: #1D6DFC;
+    text-decoration: none;
+}
+.list {
+    width: 100%;
+}
+.list li{
+    font-size: 12px;
+    color: #8C9098;
+    line-height: 22px;
+}
+.list li:first-child{
+    font-size: 12px;
+    color: #778199;
+}
+.bottom{
+    width: 100%;
+    box-sizing: border-box;
+}
+.bottom .box{
+    padding: 20px 26px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #E3E7F1;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.box h4{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #010F35;
+    margin-bottom: 30px;
+}
+.box ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.box ul li{
+    width: 28%;
+    margin-left: 6px;
+    margin-bottom: 20px;
+}
+.box ul li h5{
+    font-size: 12px;
+    color: #778199;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+.el-dropdown{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    box-sizing: border-box;
+    
+}
+
+.box ul li .el-dropdown span{
+    display: inline-block;
+    padding-left: 10px;
+    width:100%;
+    height: 100%;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+.el-dropdown .el-dropdown-link i{
+    position: absolute;
+    right:0;
+    width: 28px;
+    height: 28px;
+    background: #F5F6FA;
+    line-height: 30px;
+    text-align: center;
+}
+.box ul li input{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.box:nth-child(2) ul li,.last .inbox ul li{
+    width: 46%;
+    padding: 20px 0;
+}
+.box:nth-child(2) ul li textarea,.last .inbox ul li textarea{
+    width: 100%;
+    height: 100%;
+}
+.boxim ul li{
+    width: 20%;
+}
+.btn{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+.btn button{
+    width: 68px;
+    height: 34px;
+    border:0;
+    margin-left: 20px;
+}
+.btn button:first-child{
+    background: #1D6DFC;
+    color:#fff;
+    border-radius: 2px;
+}
+.btn button:nth-child(2){
+    background: #FFFFFF;
+    font-size: 12px;
+    color: #778199;
+    border-radius: 2px;
+    border: 1px solid #778199;
+}
+.btn button:last-child{
+    border: 1px solid #778199;
+    border-radius: 2px;
+    background: #F5F6FA;
+}
