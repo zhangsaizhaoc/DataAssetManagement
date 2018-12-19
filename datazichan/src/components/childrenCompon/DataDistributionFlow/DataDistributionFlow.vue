@@ -4,22 +4,22 @@
             <h5>来源系统</h5>
             <div class="main">
                 <h6></h6>
-                <p v-for='(item,index) in data2.list' :key='index'>
+                <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameSour'>
                     {{item.dataattributenameSour}}
                     <span>{{item.systemSour}}</span>
-                    <em></em>
+                    
                 </p>
+                <p style='height: 47px;border:0;background:none' v-for='(item,index) in data2.list' :key='index' v-if='!item.dataattributenameSour'></p>
             </div>
         </div>
         <div class="center">
             <h5>实体数据</h5>
             <div class="main">
                 <h6><span>{{data2.dataentityname}}</span></h6>
-                <p v-for='(item,index) in data2.list' :key='index'>
+                <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameSour||item.dataattributenameGo'>
                     <b></b>
                     {{item.dataattributename}}
                     <span>{{item.system}}</span>
-                    <em></em>
                 </p>
             </div>
         </div>
@@ -27,10 +27,11 @@
             <h5>去向系统</h5>
             <div class="main">
             <h6></h6>
-                <p v-for='(item,index) in data2.list' :key='index'>
+                <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameGo'>
                     {{item.dataattributenameGo}}
                     <span>{{item.systemGo}}</span>
                 </p>
+                <p style='height: 47px;border:0;background:none' v-for='(item,index) in data2.list' :key='index' v-if='!item.dataattributenameGo'></p>
             </div>
         </div>
   </div>
@@ -49,7 +50,7 @@
         var _this = this;
         console.log(this.$route.query.data)
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findFlowTo",
+            url: `${this.Root}datagovern/contentbaseinfo/findFlowTo`,
             dataType: "json",
             method: 'GET',
             data: {

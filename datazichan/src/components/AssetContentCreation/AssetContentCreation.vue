@@ -98,11 +98,11 @@
                     <ul>
                         <li>
                             <h5>业务定义</h5>
-                           <textarea name="yewudingyi" id="" class='businessdefinition' cols="30" rows="5"></textarea>
+                           <textarea name="yewudingyi" id="" class='businessdefinition' cols="20" rows="5"></textarea>
                         </li>
                         <li>
                             <h5>业务规则</h5>
-                            <textarea name="yewuguize" id="" class='businessrule' cols="30" rows="5"></textarea>
+                            <textarea name="yewuguize" id="" class='businessrule' cols="20" rows="5"></textarea>
                         </li>
                     </ul>
                 </div>
@@ -234,7 +234,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="btn">
+            <div class="btns">
                 <button @click="Submission">提交</button>
                 <button @click="Preservation">保存</button>
                 <button @click="cancel">取消</button>
@@ -247,7 +247,7 @@
                 <el-upload
                     class="upload-demo"
                     ref="upload"
-                    action="/management/security/importexcel/uploadExcel"
+                    :action="this.Root+'management/security/importexcel/uploadExcel'"
                     :on-preview="handlePreview"
                     :on-change="handleChange"
                     :on-remove="handleRemove"
@@ -257,7 +257,7 @@
                     :auto-upload="false"
                     :beforeUpload="beforeAvatarUpload"
                 >
-                    <el-button slot="trigger" size="small" type="primary">{{textVale}}</el-button>
+                    <el-button slot="trigger" size="small" type="primary" >{{textVale}}</el-button>
                     <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">导入</el-button>
                 </el-upload>
                 <div class="download">
@@ -306,18 +306,18 @@
                     "dataentityname": "数据实体",//实体
                     "acquisitionfrequency": "实时",//采集频率
                     "datatype": "varchar",//数据类型
-                    "firstClassificationID": 3,//一级业务域
+                    "firstClassificationID": '',//一级业务域
                     "systemSour": "B",//来源系统
-                    "thirdClassificationID": 6,//三级业务域
+                    "thirdClassificationID": '',//三级业务域
                     "datasize": "xxxx",//数据量
                     "dataownername": "管理员",//数据责任人
                     "datalength": 100,//数据长度
-                    "fourthClassificationID": 8,//四级业务域
+                    "fourthClassificationID":'',//四级业务域
                     "dataattributenameSour": "供应商名称",//来源字段名称
                     "fieldnameEn": "vendor",//英文字段
                     "dataattributetype": "基本属性",//属性类型
-                    "professionalPlateID": 1,//专业板块
-                    "secondClassificationID": 5,//二级业务域
+                    "professionalPlateID": '',//专业板块
+                    "secondClassificationID": '',//二级业务域
                     "acquisitiongeometry": "线上",//采集方式
                     "system": "销售管理平台",//所在系统
                     "databasetablename": "BBBBB",//数据表名
@@ -335,7 +335,7 @@
         mounted() {
             var _this=this;
             $.ajax({
-                url: "/datagovern/contentbaseinfo/findByParent",
+                url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                 dataType: "json",
                 method: 'GET',
                 data: {
@@ -348,6 +348,7 @@
             })
         },
         methods:{
+            /*----遮罩层----*/
             open(data) {
                 var teval='';
                 var teval2='';
@@ -373,8 +374,9 @@
                 for(var i=0;i<itexta.length;i++){
                     this.obj[itexta[i].className]=itexta[i].value;
                 }
+                console.log(_this.obj)
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/submit",
+                    url: `${this.Root}datagovern/contentbaseinfo/submit`,
                     dataType: "json",
                     method: 'GET',
                     data: _this.obj,
@@ -383,6 +385,7 @@
                         _this.open(data);
                     }
                 })
+                this.$router.push('/DataAssetChange')
                 console.log(this.obj)
             },
             /*----保存----*/
@@ -398,7 +401,7 @@
                     this.obj[itexta[i].className]=itexta[i].value;
                 }
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/create",
+                    url: `${this.Root}datagovern/contentbaseinfo/create`,
                     dataType: "json",
                     method: 'GET',
                     data: _this.obj,
@@ -406,10 +409,11 @@
                         console.log(data);
                     }
                 })
+                this.$router.push('/DataAssetChange')
             },
             /*----取消----*/
             cancel(){
-
+                this.$router.push('/DataAssetChange')
             },
             /*----数据请求----*/
             getData(obj){
@@ -417,7 +421,7 @@
                 var data=[];
                 var _this=this;
                  $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -445,7 +449,7 @@
                 this.obj.professionalPlateID=command.classificationid;
                 this.textVal1=command.classificationname
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -469,7 +473,7 @@
                 this.textVal2=command.classificationname;
                  this.obj.firstClassificationID=command.classificationid;
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -491,7 +495,7 @@
                 this.textVal3=command.classificationname
                 this.obj.secondClassificationID=command.classificationid;
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -510,7 +514,7 @@
                 this.textVal4=command.classificationname
                 this.obj.thirdClassificationID=command.classificationid;
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -525,6 +529,7 @@
             },
             handleCommand5(command) {
                 this.textVal5=command.classificationname;
+                console.log(command)
                 this.obj.fourthClassificationID=command.classificationid;
             },
             handleCommand6(command) {
@@ -655,5 +660,9 @@
   .el-icon-arrow-down {
     font-size: 12px;
   }
+  .el-dropdown-menu{
+        width: 20%;
+    }
+  
 </style>
 

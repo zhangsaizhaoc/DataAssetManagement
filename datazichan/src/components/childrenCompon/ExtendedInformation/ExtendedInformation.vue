@@ -1,7 +1,7 @@
 <template>
   <div id="ExtendedInformation">
         <ul>
-            <li v-for='(item,index) in data' :key=''index>
+            <li v-for='(item,index) in data' :key='index'>
                 <span>{{item.dataattributename}}</span>
                 <span>{{item.datatype}}（{{item.datalength}}）</span>
             </li>
@@ -21,7 +21,7 @@
     mounted() {
         var _this = this;
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findInfo",
+            url: `${this.Root}datagovern/contentbaseinfo/findInfo`,
             dataType: "json",
             method: 'GET',
             data: {

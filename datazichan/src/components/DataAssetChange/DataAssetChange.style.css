@@ -3,7 +3,33 @@
     padding: 40px;
     box-sizing: border-box;
 }
-
+.top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+}
+.top h5{
+    font-size: 24px;
+    color:#4E4E4E;
+}
+.top h6{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top h6 span {
+    width: 88px;
+    height: 34px;
+    border: 1px solid #778199;
+    border-radius: 2px;
+    font-size: 12px ;
+    color:#778199;
+    line-height: 34px;
+    text-align: center;
+    margin-left: 10px;
+}
 .box{
     padding: 20px 26px;
     box-sizing: border-box;
@@ -19,18 +45,20 @@
     line-height: 30px;
     font-size: 14px;
     color: #010F35;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 .box ul{
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 .box ul li{
     width: 30%;
     margin-left: 6px;
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 .box ul li h5{
     font-size: 12px;
@@ -163,11 +191,11 @@
 .el-date-editor{
   width: 100%;  
 }
-.box .btn{
+.box .btns{
     width: 100%;
     text-align: center;
 }
-.btn span {
+.btns span {
     padding: 8px 14px;
     border-radius: 6px;
     color:#fff;

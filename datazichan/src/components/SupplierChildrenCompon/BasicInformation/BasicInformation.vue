@@ -34,7 +34,7 @@
         var _this = this;
         console.log(this.$route.query.data)
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findBusAttr",
+            url: `${this.Root}datagovern/contentbaseinfo/findBusAttr`,
             dataType: "json",
             method: 'GET',
             data: {

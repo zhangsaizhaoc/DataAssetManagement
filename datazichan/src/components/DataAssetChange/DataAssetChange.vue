@@ -1,5 +1,11 @@
 <template>
     <div id="DataAssetChange">
+          <div class="top">
+            <h5>数据资产内容维护</h5>
+            <h6>
+                <span @click='create'>创建</span>
+            </h6>
+        </div>
         <div class="box">
             <h4>查询</h4>
             <div class="inbox">
@@ -106,7 +112,7 @@
                     <li>
                     </li>
                 </ul>
-                <div class="btn">
+                <div class="btns">
                     <span @click='Reset'>重置</span>
                     <span @click='submit'>查询</span>
                 </div>
@@ -138,12 +144,14 @@
                             <span :class='item.status?"sub":"pensub"'>{{item.status?'已提交':'待提交'}}</span>
                         </td>
                         <td>
-                            <em><i class='el-icon-more'></i></em>
+                            <router-link :to="{path:'/Details',query:{id:item.maintenanceid}}">
+                                <em><i class='el-icon-more'></i></em>
+                            </router-link>
                             <router-link :to="{path:'/EditPage',query:{id:item.maintenanceid}}">
                                 <i class='el-icon-edit-outline'></i>
                             </router-link>
                             
-                            <i class='el-icon-delete'></i>
+                            <i class='el-icon-delete' @click='Delete(item)'></i>
                         </td>
                     </tr>
                 </tbody>
@@ -225,12 +233,14 @@
             
             }
         },
+        inject:['reload'],
         components:{
         },
         mounted(){
             var _this=this;
+            console.log(this.Root)
             $.ajax({
-                url: "/datagovern/contentbaseinfo/findByParent",
+                url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                 dataType: "json",
                 method: 'GET',
                 data: {
@@ -242,7 +252,7 @@
                 }
             })
             $.ajax({
-                url: "/datagovern/contentbaseinfo/findByScreen",
+                url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
                 dataType: "json",
                 method: 'GET',
                 success: function(data) {
@@ -253,6 +263,41 @@
             })
         },
         methods:{
+            /*----创建----*/
+            create(){
+                this.$router.push('/AssetContentCreation');
+            },
+            /*----维护----*/
+            maintain(){
+                this.$router.push('/DataClassification');
+            },
+            /*----删除----*/
+            Delete(obj){
+                var _this=this;
+                $.ajax({
+                    url: `${this.Root}datagovern/contentbaseinfo/delete`,
+                    dataType: "json",
+                    method: 'GET',
+                    data:{
+                        maintenanceid:obj.maintenanceid
+                    },
+                    success: function(data) {
+                    console.log(data);
+                    _this.reload();
+                        $.ajax({
+                            url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
+                            dataType: "json",
+                            method: 'GET',
+                            success: function(data) {
+                            console.log(data);
+                                _this.dataList=data.data?data.data:[];
+                                _this.totalCount=data?data.totalCount:0;
+                            }
+                        })
+                    }
+                })
+            },
+            /*----重置----*/
             Reset(){
                 var inp=$('.box input');
                 var _this=this;
@@ -277,7 +322,7 @@
                 this.textVal6='下拉列表';
                 this.value7='';
                  $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByScreen",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
                     dataType: "json",
                     method: 'GET',
                     success: function(data) {
@@ -287,6 +332,7 @@
                     }
                 })
             },
+            /*----提交----*/
             submit(){
                 var inp=$('.box input');
                 var _this=this;
@@ -298,7 +344,7 @@
                     
                 }
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByScreen",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
                     dataType: "json",
                     method: 'GET',
                     data:_this.obj,
@@ -309,6 +355,7 @@
                     }
                 })
             },
+            /*----监听时间time——time----*/
             onChange(date){
                 console.log(date)
                 var statey=this.value7[0]?new Date(this.value7[0]).getFullYear():'',
@@ -322,12 +369,13 @@
                 this.obj.endTime=endy+'-'+endm+'-'+endd
 
             },
+            /*----获取数据----*/
             getData(val){
                 console.log(val)
                 var _this=this;
                 
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByScreen",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -339,6 +387,7 @@
                     }
                 })
             },
+            /*----分页器事件----*/
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
             },
@@ -346,6 +395,7 @@
                 console.log(`当前页: ${val}`);
                 this.getData(val)
             },
+            /*----下拉列表事件----*/
             handleCommand1(command) {
                 console.log(command);
                 var _this=this;
@@ -360,7 +410,7 @@
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -384,7 +434,7 @@
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -405,7 +455,7 @@
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -424,7 +474,7 @@
                 this.data4=[];
                 this.textVal5='下拉列表';
                 $.ajax({
-                    url: "/datagovern/contentbaseinfo/findByParent",
+                    url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
                     method: 'GET',
                     data:{
@@ -456,6 +506,7 @@
 <style scoped>
     @import './DataAssetChange.style.css';
     .el-dropdown-menu{
-        width: 200px;
+        width: 20%;
     }
+    
 </style>

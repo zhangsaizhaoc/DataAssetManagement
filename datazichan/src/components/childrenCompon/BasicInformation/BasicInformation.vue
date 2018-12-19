@@ -1,7 +1,7 @@
 <template>
   <div id="BasicInformation">
         <ul>
-            <li v-for='(item,index) in data2' :key=''index>
+            <li v-for='(item,index) in data2' :key='index'>
                 <span>{{item.dataattributename}}</span>
                 <span>{{item.datatype}}（{{item.datalength}}）</span>
             </li>
@@ -23,7 +23,7 @@
         var _this = this;
         console.log(this.$route.query.data)
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findInfo",
+            url: `${this.Root}datagovern/contentbaseinfo/findInfo`,
             dataType: "json",
             method: 'GET',
             data: {

@@ -68,7 +68,7 @@
     mounted() {
         var _this = this;
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findTechAttr",
+            url: `${this.Root}datagovern/contentbaseinfo/findTechAttr`,
             dataType: "json",
             method: 'GET',
             data: {

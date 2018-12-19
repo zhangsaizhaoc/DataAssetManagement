@@ -1,5 +1,5 @@
 <template>
-    <div id='EditPage'>
+    <div id='Details'>
         <div class="bottom">
             <div class="box">
                 <h4>基本信息</h4>
@@ -226,33 +226,13 @@
                 </div>
 
             </div>
-            <div class="box last">
-                <h4>变更信息说明</h4>
-                <div class="inbox">
-                    <ul>
-                        <li>
-                            <h5>变更内容描述</h5>
-                           <textarea name="yewudingyi" id="" class='modifydescription' cols="30" rows="5"     v-model="obj1.modifydescription"></textarea>
-                        </li>
-                        <li>
-                            <h5>变更原因说明</h5>
-                            <textarea name="yewuguize" id="" class='modifyreason' cols="30" rows="5" v-model="obj1.modifyreason"></textarea>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="btn">
-                <button @click="Submission">提交</button>
-                <button @click="Preservation">保存</button>
-                <button @click="cancel">取消</button>
-            </div>
         </div>
     </div>
 </template>
 <script>
     import $ from 'jquery'
     export default{
-        name:'EditPage',
+        name:'Details',
         data(){
             return{
                 flag:false,
@@ -726,7 +706,7 @@
     }
 </script>
 <style scoped>
-@import './EditPage.style.css';
+@import './Details.style.css';
  .el-dropdown-link {
     cursor: pointer;
     color: #778199;

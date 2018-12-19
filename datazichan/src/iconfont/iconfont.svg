@@ -1,0 +1,32 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="xiangshang" unicode="&#58881;" d="M514.724-84.641l379.559 379.56H675.636V820.21H350.241v-525.291H131.594l383.13-379.56zM388.675 259.752v516.94h245.457v-515.916l173.374 0.296-292.991-292.99-294.559 291.405 168.719 0.267z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="fanhui" unicode="&#58882;" d="M284.444-14.222h341.334v-56.89H284.444zM568.889 611.556v56.888c204.8 0 398.222-164.977 398.222-369.777S802.133-71.111 597.333-71.111v56.889c170.667 0 312.89 142.222 312.89 312.889S739.555 611.556 568.888 611.556z m0 56.888c204.8 0 398.222-164.977 398.222-369.777S802.133-71.111 597.333-71.111v56.889c170.667 0 312.89 142.222 312.89 312.889S739.555 611.556 568.888 611.556v56.888z m-455.111 0h455.11v-56.888h-455.11zM95.403 682.268L296.562 481.11l-40.278-40.22L55.182 642.048zM297.13 805.774L95.973 604.73l-40.22 40.163L256.852 845.938z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

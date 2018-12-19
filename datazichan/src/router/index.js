@@ -6,6 +6,8 @@ import Supplier from '@/components/Supplier/Supplier'//
 import AssetContentCreation from '@/components/AssetContentCreation/AssetContentCreation'//
 import DataAssetChange from '@/components/DataAssetChange/DataAssetChange'//
 import EditPage from '@/components/EditPage/EditPage'//
+import DataClassification from '@/components/DataClassification/DataClassification'//
+import Details from '@/components/Details/Details'//
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/EditPage',
       name: 'EditPage',
       component: EditPage
+    },
+    {
+      path: '/DataClassification',
+      name: 'DataClassification',
+      component: DataClassification
+    },
+    {
+      path: '/Details',
+      name: 'Details',
+      component: Details
     },
   ]
 })

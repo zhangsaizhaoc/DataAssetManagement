@@ -1,10 +1,10 @@
-#EditPage{
+#Details{
     width: 100%;
     height: auto;
     padding:40px;
     box-sizing: border-box;
 }
-#EditPage .top{
+#Details .top{
     width: 100%;
     display: flex;
     justify-content: space-between;

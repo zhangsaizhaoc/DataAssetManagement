@@ -45,7 +45,7 @@
     mounted() {
         var _this = this;
         $.ajax({
-            url: "/datagovern/contentbaseinfo/findManageAttr",
+            url: `${this.Root}datagovern/contentbaseinfo/findManageAttr`,
             dataType: "json",
             method: 'GET',
             data: {

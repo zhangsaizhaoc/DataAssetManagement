@@ -8,14 +8,14 @@
             :data="data"
             :props="props1"
             :load="loadNode1"
+            :highlight-current='true'
             lazy
             @node-click="handleNodeClick"
           >
           </el-tree>
         </li>
-        <li>数据资产分类维护</li>
-        <li><router-link to="/AssetContentCreation">数据资产内容创建</router-link></li>
-        <li><router-link to="/DataAssetChange">数据资产内容变更</router-link></li>
+        <li><router-link to="/DataClassification">数据资产分类维护</router-link></li>
+        <li><router-link to="/DataAssetChange">数据资产内容维护</router-link></li>
       </ul>
     </div>
     <div class="right">
@@ -53,8 +53,9 @@
     },
     mounted() {
       var _this = this;
+      console.log(this.Root)
       $.ajax({
-        url: "/datagovern/classification/findMenu",
+        url: `${this.Root}datagovern/classification/findMenu`,
         dataType: "json",
         method: 'GET',
         data: {
@@ -76,6 +77,7 @@
       
     },
     methods: {
+      /*----下拉列表----*/
       fnc(){
         console.log(this.$refs.clicka)
         if(this.flag){
@@ -89,28 +91,27 @@
           this.flag=true;
         }
       },
-
+      /*----刷新路由----*/
       reload () {
         this.isRouterAlive = false
         this.$nextTick(() => (this.isRouterAlive = true))
       },
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
-        console.log(node)
-        console.log(node.data.status)
         var _this = this;
         if (node.data.status >= 2){
-           return resolve([])
+          resolve([]);
+          
         };
         setTimeout(() => {
           $.ajax({
-          url: "/datagovern/classification/findMenu",
+          url: `${this.Root}datagovern/classification/findMenu`,
           dataType: "json",
           method: 'GET',
           data: node.data,
           success: function(data) {
             console.log(data);
-            resolve(data.data);
+            resolve(data.data?data.data:[]);
           }
         })
         }, 500);
@@ -118,8 +119,8 @@
       /*----树形菜单点击----*/
        handleNodeClick(data) {
         var _this=this;
-        if(data.name!=="能源板块"){
-          this.arr=data.path.split(',')
+        if(data.path){
+          this.arr=data.path.split(',')//字符串转数组
         }
         
         if(this.arr.indexOf(data.name) == -1){//判断是否重复
@@ -153,5 +154,46 @@
 </script>
 
 <style scoped>
-  @import './css/style.css';
+  #app .left{
+    background: #fff;
+    width: 250px;
+    height: 100%;
+}
+#app .right{
+    flex: 1;
+    overflow-y: scroll;
+}
+
+  .left ul{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 6px;
+}
+.left ul li{
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    line-height: 40px;
+    font-size: 14px;
+    color: #4E4E4E;
+}
+.left ul li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    color: #4E4E4E;
+    text-decoration: none;
+}
+.left ul li h6{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #4E4E4E;
+    font-weight: 100;
+}   
+.el-tree{
+    margin-left: 10px;
+}
 </style>

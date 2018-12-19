@@ -3,6 +3,9 @@
     margin: 0;
     list-style: none;
 }
+html{
+    overflow: hidden;
+}
 html,body,#app{
     width: 100%;
     height: 100%;
@@ -12,44 +15,41 @@ html,body,#app{
     justify-content: space-between;
     background: #F5F6FA;
 }
-#app .left{
+.upload-demo{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+.upload-demo div.el-upload{ 
+    flex: 1 !important;
+    height: 100%;
+    display: block;
+}
+.upload-demo .el-upload .el-button.el-button--primary.el-button--small{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #E3E7F1;
+    border-radius: 2px;
     background: #fff;
-    width: 250px;
-    height: 100%;
+    font-size: 12px;
+    color: #B7BBC3;
+    text-align: left;
 }
-#app .right{
-    flex: 1;
-    overflow-y: scroll;
+.upload-demo .el-button.el-button--success{
+    width: 68px;
+    height: 34px;
+    background: #1D6DFC;
+    font-size: 12px;
+    color: #FFFFFF;
 }
-.left ul{
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 6px;
+.upload-demo ul{
+    position: absolute;
+    left:0;
 }
-.left ul li{
-    width: 100%;
-    height: 40px;
-    overflow: hidden;
-    line-height: 40px;
-    font-size: 14px;
-    color: #4E4E4E;
-}
-.left ul li a{
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    font-size: 14px;
-    color: #4E4E4E;
-    text-decoration: none;
-}
-.left ul li h6{
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    font-size: 14px;
-    color: #4E4E4E;
-    font-weight: 100;
-}   
-.el-tree{
-    margin-left: 10px;
+.upload-demo ul li.el-upload-list__item:first-child{
+    margin-top: 0;
 }
