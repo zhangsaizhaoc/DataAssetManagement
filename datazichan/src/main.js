@@ -16,11 +16,11 @@ function url(urlstr){
   for(var i=0;i<news.length;i++){
     console.log(news[i]=='meta-manager')
     if(news[i]=='meta-manager'){
-      console.log(111)
-      str='meta-manager';
-      break;
+ console.log(111)
+ str='meta-manager';
+ break;
     }else{
-       str='/';
+  str='/';
     }
   }
   return str;

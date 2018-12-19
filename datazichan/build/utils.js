@@ -18,14 +18,14 @@ exports.cssLoaders = function (options) {
   const cssLoader = {
     loader: 'css-loader',
     options: {
-      sourceMap: options.sourceMap
+ sourceMap: options.sourceMap
     }
   }
 
   const postcssLoader = {
     loader: 'postcss-loader',
     options: {
-      sourceMap: options.sourceMap
+ sourceMap: options.sourceMap
     }
   }
 
@@ -34,23 +34,23 @@ exports.cssLoaders = function (options) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
 
     if (loader) {
-      loaders.push({
-        loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
-        })
-      })
+ loaders.push({
+   loader: loader + '-loader',
+   options: Object.assign({}, loaderOptions, {
+sourceMap: options.sourceMap
+   })
+ })
     }
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
-      })
+ return ExtractTextPlugin.extract({
+   use: loaders,
+   fallback: 'vue-style-loader'
+ })
     } else {
-      return ['vue-style-loader'].concat(loaders)
+ return ['vue-style-loader'].concat(loaders)
     }
   }
 
@@ -74,8 +74,8 @@ exports.styleLoaders = function (options) {
   for (const extension in loaders) {
     const loader = loaders[extension]
     output.push({
-      test: new RegExp('\\.' + extension + '$'),
-      use: loader
+ test: new RegExp('\\.' + extension + '$'),
+ use: loader
     })
   }
 
@@ -92,10 +92,10 @@ exports.createNotifierCallback = () => {
     const filename = error.file && error.file.split('!').pop()
 
     notifier.notify({
-      title: packageConfig.name,
-      message: severity + ': ' + error.name,
-      subtitle: filename || '',
-      icon: path.join(__dirname, 'logo.png')
+ title: packageConfig.name,
+ message: severity + ': ' + error.name,
+ subtitle: filename || '',
+ icon: path.join(__dirname, 'logo.png')
     })
   }
 }

@@ -11,7 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      "/": 'http://10.2.96.97:8080/'
+ "/": 'http://10.2.96.97:8080/'
     },
 
     // Various Dev Server settings
@@ -24,8 +24,8 @@ module.exports = {
 
     
     /**
-     * Source Maps
-     */
+* Source Maps
+*/
 
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'cheap-module-eval-source-map',
@@ -48,8 +48,8 @@ module.exports = {
     assetsPublicPath: '/meta-manager/',
 
     /**
-     * Source Maps
-     */
+* Source Maps
+*/
 
     productionSourceMap: true,
     // https://webpack.js.org/configuration/devtool/#production

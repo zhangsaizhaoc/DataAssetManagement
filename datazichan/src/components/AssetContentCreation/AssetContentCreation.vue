@@ -9,11 +9,18 @@
         </div>
         <div class="bottom">
             <div class="box">
-                <h4>基本信息</h4>
+                <h4>
+                    基本信息
+                </h4>
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>专业模板</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                专业模板
+                            </h5>
                             <el-dropdown @command="handleCommand1" >
                                 <span class="el-dropdown-link">
                                     {{textVal1}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -25,9 +32,14 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>一级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                一级业务域
+                            </h5>
                             <el-dropdown @command="handleCommand2">
-                                <span class="el-dropdown-link">
+                                <span class="el-dropdown-link" @click="warning1">
                                     {{textVal2}}<i class="el-icon-arrow-down el-icon--right"></i>
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
@@ -36,9 +48,14 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>二级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                二级业务域
+                            </h5>
                             <el-dropdown @command="handleCommand3">
-                                <span class="el-dropdown-link">
+                                <span class="el-dropdown-link" @click="warning2">
                                     {{textVal3}}<i class="el-icon-arrow-down el-icon--right"></i>
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
@@ -49,7 +66,7 @@
                         <li>
                             <h5>三级业务域</h5>
                             <el-dropdown @command="handleCommand4">
-                                <span class="el-dropdown-link">
+                                <span class="el-dropdown-link" @click="warning3">
                                     {{textVal4}}<i class="el-icon-arrow-down el-icon--right"></i>
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
@@ -59,8 +76,8 @@
                         </li>
                         <li>
                             <h5>四级业务域</h5>
-                            <el-dropdown @command="handleCommand5">
-                                <span class="el-dropdown-link">
+                            <el-dropdown @command="handleCommand5" >
+                                <span class="el-dropdown-link" @click="warning4">
                                     {{textVal5}}<i class="el-icon-arrow-down el-icon--right"></i>
                                 </span>
                                 <el-dropdown-menu slot="dropdown">
@@ -69,15 +86,30 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>数据实体</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据实体
+                            </h5>
                             <input type="text" class='dataentityname' >
                         </li>
                         <li>
-                            <h5>数据属性名称</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据属性名称
+                            </h5>
                             <input type="text" class='dataattributetype'>
                         </li>
                         <li>
-                            <h5>数据属性类型</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据属性类型
+                            </h5>
                             <el-dropdown @command="handleCommand6">
                                 <span class="el-dropdown-link">
                                     {{textVal6}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -97,11 +129,21 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>业务定义</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                业务定义
+                            </h5>
                            <textarea name="yewudingyi" id="" class='businessdefinition' cols="20" rows="5"></textarea>
                         </li>
                         <li>
-                            <h5>业务规则</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                业务规则
+                            </h5>
                             <textarea name="yewuguize" id="" class='businessrule' cols="20" rows="5"></textarea>
                         </li>
                     </ul>
@@ -112,11 +154,21 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>数据所属组织部门</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据所属组织部门
+                            </h5>
                             <input type="text" class='departmentname'>
                         </li>
                         <li>
-                            <h5>数据负责人</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据负责人
+                            </h5>
                             <input type="text" class='dataownername'>
                         </li>
                         <li>
@@ -124,7 +176,11 @@
                             <input type="text" class='quotedstandard'>
                         </li>
                         <li>
-                            <h5>采集方式</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                采集方式</h5>
                             <el-dropdown @command="handleCommand7">
                                 <span class="el-dropdown-link">
                                     {{textVal7}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -164,7 +220,11 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>所在系统</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                所在系统</h5>
                             <input type="text" class='system'>
                         </li>
                         <li>
@@ -172,27 +232,51 @@
                             <input type="text" class='datasize'>
                         </li>
                         <li>
-                            <h5>数据库名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据库名</h5>
                             <input type="text" class='databasename'>
                         </li>
                         <li>
-                            <h5>数据表名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据表名</h5>
                             <input type="text" class='databasetablename'>
                         </li>
                         <li>
-                            <h5>字段英文名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                字段英文名</h5>
                             <input type="text" class='fieldnameEn'>
                         </li>
                         <li>
-                            <h5>字段中文名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                字段中文名</h5>
                             <input type="text" class="fieldnameCn">
                         </li>
                         <li>
-                            <h5>数据类型</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据类型</h5>
                             <input type="text" class='datatype'>
                         </li>
                         <li>
-                            <h5>数据长度</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据长度</h5>
                             <input type="text" class='datalength'>
                         </li>
                         <li>
@@ -200,11 +284,19 @@
                             <input type="text" class='datarange'>
                         </li>
                         <li>
-                            <h5>来源系统</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                来源系统</h5>
                             <input type="text" class='systemSour'>
                         </li>
                         <li>
-                            <h5>来源字段名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                来源字段名</h5>
                             <input type="text" class='dataattributenameSour'>
                         </li>
                         <li>
@@ -216,7 +308,11 @@
                             <input type="text" class='dataattributenameGo'>
                         </li>
                         <li>
-                            <h5>数据安全等级</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据安全等级</h5>
                             <el-dropdown @command="handleCommand9">
                                 <span class="el-dropdown-link">
                                     {{textVal9}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -646,6 +742,33 @@
                 };
                 console.log(files[0])
                 fileReader.readAsBinaryString(files[0]);
+            },
+            warning1(){
+                if(this.data1.length<=0){
+                    this.open4()
+                }
+            },
+            warning2(){
+                if(this.data2.length<=0){
+                    this.open4()
+                }
+            },
+            warning3(){
+                if(this.data3.length<=0){
+                    this.open4()
+                }
+            },
+            warning4(){
+                if(this.data4.length<=0){
+                    this.open4()
+                }
+            },
+            open4() {
+                this.$notify({
+                    title: '警告',
+                    message: '请先选择上一级',
+                    type: 'warning'
+                });
             },
         }
     }

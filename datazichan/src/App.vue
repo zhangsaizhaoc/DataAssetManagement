@@ -4,18 +4,15 @@
       <ul>
         <li ref='clicka' @click='fnc'>
           <h6><i class='el-icon-caret-right'></i> 数据资产查询</h6>
-          <el-tree
-            :data="data"
-            :props="props1"
-            :load="loadNode1"
-            :highlight-current='true'
-            lazy
-            @node-click="handleNodeClick"
-          >
+          <el-tree :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
           </el-tree>
         </li>
-        <li><router-link to="/DataClassification">数据资产分类维护</router-link></li>
-        <li><router-link to="/DataAssetChange">数据资产内容维护</router-link></li>
+        <li>
+          <router-link to="/DataClassification">数据资产分类维护</router-link>
+        </li>
+        <li>
+          <router-link to="/DataAssetChange">数据资产内容维护</router-link>
+        </li>
       </ul>
     </div>
     <div class="right">
@@ -28,7 +25,7 @@
   import $ from 'jquery'
   export default {
     name: 'App',
-    provide(){
+    provide() {
       return {
         reload: this.reload
       }
@@ -36,19 +33,19 @@
     data() {
       return {
         isRouterAlive: true,
-        data:[{//默认树形菜单
+        data: [{ //默认树形菜单
           id: 1,
           name: "能源板块",
           parentid: 0,
           status: 0
         }],
-        props1: {//树形菜单以什么key值渲染
+        props1: { //树形菜单以什么key值渲染
           label: 'name',
           children: 'zones',
           isLeaf: 'leaf'
         },
-        arr:[],//面包屑传值
-        flag:false,
+        arr: [], //面包屑传值
+        flag: false,
       }
     },
     mounted() {
@@ -57,7 +54,7 @@
       $.ajax({
         url: `${this.Root}datagovern/classification/findMenu`,
         dataType: "json",
-        method: 'GET',
+        method: 'POST',
         data: {
           "id": 0,
           "name": "",
@@ -66,134 +63,145 @@
         },
         success: function(data) {
           console.log(data);
-          _this.data = data.data.length>0?data.data:[{id: 1,name: "能源板块",parentid: 0,status: 0}]
+          _this.data = data.data.length > 0 ? data.data : [{
+            id: 1,
+            name: "能源板块",
+            parentid: 0,
+            status: 0
+          }]
         }
       })
     },
-    computed:{
-      
+    computed: {
+  
     },
-    watch:{
-      
+    watch: {
+  
     },
     methods: {
       /*----下拉列表----*/
-      fnc(){
+      fnc() {
         console.log(this.$refs.clicka)
-        if(this.flag){
-          this.$refs.clicka.style.height='40px';
-          this.$refs.clicka.querySelector('h6').querySelector('i').className='el-icon-caret-right'
-          this.flag=false;
-        }else{
-
-          this.$refs.clicka.style.height='auto';
-          this.$refs.clicka.querySelector('h6').querySelector('i').className='el-icon-caret-bottom'
-          this.flag=true;
+        if (this.flag) {
+          this.$refs.clicka.style.height = '40px';
+          this.$refs.clicka.querySelector('h6').querySelector('i').className = 'el-icon-caret-right'
+          this.flag = false;
+        } else {
+  
+          this.$refs.clicka.style.height = 'auto';
+          this.$refs.clicka.querySelector('h6').querySelector('i').className = 'el-icon-caret-bottom'
+          this.flag = true;
         }
       },
       /*----刷新路由----*/
-      reload () {
+      reload() {
         this.isRouterAlive = false
         this.$nextTick(() => (this.isRouterAlive = true))
       },
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
         var _this = this;
-        if (node.data.status >= 2){
+        if (node.data.status >= 2) {
           resolve([]);
-          
+  
         };
         setTimeout(() => {
           $.ajax({
-          url: `${this.Root}datagovern/classification/findMenu`,
-          dataType: "json",
-          method: 'GET',
-          data: node.data,
-          success: function(data) {
-            console.log(data);
-            resolve(data.data?data.data:[]);
-          }
-        })
+            url: `${this.Root}datagovern/classification/findMenu`,
+            dataType: "json",
+            method: 'POST',
+            data: node.data,
+            success: function(data) {
+              console.log(data);
+              resolve(data.data ? data.data : []);
+            }
+          })
         }, 500);
       },
       /*----树形菜单点击----*/
-       handleNodeClick(data) {
-        var _this=this;
-        if(data.path){
-          this.arr=data.path.split(',')//字符串转数组
+      handleNodeClick(data) {
+        var _this = this;
+        if (data.path) {
+          this.arr = data.path.split(',') //字符串转数组
         }
-        
-        if(this.arr.indexOf(data.name) == -1){//判断是否重复
-            this.arr.push(data.name)
+  
+        if (this.arr.indexOf(data.name) == -1) { //判断是否重复
+          this.arr.push(data.name)
         }
-        
-        if(data.status==1){//当状态为1时，跳转到index路由
-        console.log(this.arr)
+  
+        if (data.status == 1) { //当状态为1时，跳转到index路由
+          console.log(this.arr)
           this.$router.push({
-            path:'/Index',
-            query:{
-              arr:_this.arr,
-              data:data
+            path: '/Index',
+            query: {
+              arr: _this.arr,
+              data: data
             }
           });
           this.reload()
-        }else if(data.status==2){
+        } else if (data.status == 2) {
           this.$router.push({
-            path:'/Supplier',
-            query:{
-              arr:_this.arr,
-              data:data
+            path: '/Supplier',
+            query: {
+              arr: _this.arr,
+              data: data
             }
           });
           this.reload()
         }
-        
+  
       }
     }
   }
 </script>
 
 <style scoped>
-  #app .left{
+  #app .left {
     background: #fff;
     width: 250px;
     height: 100%;
-}
-#app .right{
+    overflow-x: hidden;
+  }
+  
+  #app .right {
     flex: 1;
     overflow-y: scroll;
-}
-
-  .left ul{
+  }
+  
+  .left ul {
     width: 100%;
     box-sizing: border-box;
     padding: 0 6px;
-}
-.left ul li{
+  }
+  
+  .left ul li {
     width: 100%;
     height: 40px;
     overflow: hidden;
     line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
-}
-.left ul li a{
+  }
+  
+  .left ul li a {
     display: inline-block;
     width: 100%;
     height: 100%;
     font-size: 14px;
     color: #4E4E4E;
     text-decoration: none;
-}
-.left ul li h6{
+  }
+  
+  .left ul li h6 {
     width: 100%;
     height: 40px;
     line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
     font-weight: 100;
-}   
-.el-tree{
+  }
+  
+  .el-tree {
     margin-left: 10px;
-}
+  }
 </style>

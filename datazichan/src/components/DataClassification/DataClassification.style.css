@@ -114,6 +114,20 @@
 }
 .box table tbody tr td{
     text-align: center;
+    box-sizing: border-box;
+    padding: 0 4px;
+}
+.box table tbody tr td input{
+    width: 100%;
+}
+.box table tbody tr td:last-child{
+    text-align: center;
+    width: 160px;
+}
+.box table tbody tr td span{
+    text-align: center;
+    width: 50%;
+    display: inline-block;
 }
 .box table tbody tr td i,.box table tbody tr td svg,
 .box table tbody tr.tr td i,.box table tbody tr.tr td svg{

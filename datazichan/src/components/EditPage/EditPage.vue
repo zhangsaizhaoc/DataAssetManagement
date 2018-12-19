@@ -6,7 +6,11 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>专业模板</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                专业模板</h5>
                             <el-dropdown @command="handleCommand1" >
                                 <span class="el-dropdown-link">
                                     {{textVal1}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -18,7 +22,11 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>一级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                一级业务域</h5>
                             <el-dropdown @command="handleCommand2">
                                 <span class="el-dropdown-link">
                                     {{textVal2}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -29,7 +37,11 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>二级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                二级业务域</h5>
                             <el-dropdown @command="handleCommand3">
                                 <span class="el-dropdown-link">
                                     {{textVal3}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -62,15 +74,27 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>数据实体</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据实体</h5>
                             <input type="text" class='dataentityname' v-model="obj1.dataentityname" >
                         </li>
                         <li>
-                            <h5>数据属性名称</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据属性名称</h5>
                             <input type="text" class='dataattributename' v-model="obj1.dataattributename">
                         </li>
                         <li>
-                            <h5>数据属性类型</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据属性类型</h5>
                             <el-dropdown @command="handleCommand6">
                                 <span class="el-dropdown-link">
                                     {{textVal6}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -90,11 +114,19 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>业务定义</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                业务定义</h5>
                            <textarea name="yewudingyi" id="" class='businessdefinition' cols="30" rows="5" v-model="obj1.businessdefinition"></textarea>
                         </li>
                         <li>
-                            <h5>业务规则</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                业务规则</h5>
                             <textarea name="yewuguize" id="" class='businessrule' cols="30" rows="5" v-model="obj1.businessrule"></textarea>
                         </li>
                     </ul>
@@ -105,11 +137,19 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>数据所属组织部门</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据所属组织部门</h5>
                             <input type="text" class='departmentname' v-model="obj1.departmentname">
                         </li>
                         <li>
-                            <h5>数据负责人</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据负责人</h5>
                             <input type="text" class='dataownername' v-model="obj1.dataownername">
                         </li>
                         <li>
@@ -117,7 +157,11 @@
                             <input type="text" class='quotedstandard' v-model="obj1.quotedstandard">
                         </li>
                         <li>
-                            <h5>采集方式</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                采集方式</h5>
                             <el-dropdown @command="handleCommand7">
                                 <span class="el-dropdown-link">
                                     {{textVal7}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -156,35 +200,67 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>所在系统</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                所在系统</h5>
                             <input type="text" class='system' v-model="obj1.system">
                         </li>
                         <li>
-                            <h5>数据量</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据量</h5>
                             <input type="text" class='datasize' v-model="obj1.datasize">
                         </li>
                         <li>
-                            <h5>数据库名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据库名</h5>
                             <input type="text" class='databasename' v-model="obj1.databasename">
                         </li>
                         <li>
-                            <h5>数据表名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据表名</h5>
                             <input type="text" class='databasetablename' v-model="obj1.databasetablename">
                         </li>
                         <li>
-                            <h5>字段英文名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                字段英文名</h5>
                             <input type="text" class='fieldnameEn' v-model="obj1.fieldnameEn">
                         </li>
                         <li>
-                            <h5>字段中文名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                字段中文名</h5>
                             <input type="text" class="fieldnameCn" v-model="obj1.fieldnameCn">
                         </li>
                         <li>
-                            <h5>数据类型</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据类型</h5>
                             <input type="text" class='datatype' v-model="obj1.datatype">
                         </li>
                         <li>
-                            <h5>数据长度</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据长度</h5>
                             <input type="text" class='datalength' v-model="obj1.datalength">
                         </li>
                         <li>
@@ -192,11 +268,19 @@
                             <input type="text" class='datarange' v-model="obj1.datarange">
                         </li>
                         <li>
-                            <h5>来源系统</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                来源系统</h5>
                             <input type="text" class='systemSour' v-model="obj1.systemSour">
                         </li>
                         <li>
-                            <h5>来源字段名</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                来源字段名</h5>
                             <input type="text" class='dataattributenameSour' v-model="obj1.dataattributenameSour">
                         </li>
                         <li>
@@ -208,7 +292,11 @@
                             <input type="text" class='dataattributenameGo' v-model="obj1.dataattributenameGo">
                         </li>
                         <li>
-                            <h5>数据安全等级</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                数据安全等级</h5>
                             <el-dropdown @command="handleCommand9">
                                 <span class="el-dropdown-link">
                                     {{textVal9}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -231,11 +319,19 @@
                 <div class="inbox">
                     <ul>
                         <li>
-                            <h5>变更内容描述</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                变更内容描述</h5>
                            <textarea name="yewudingyi" id="" class='modifydescription' cols="30" rows="5"     v-model="obj1.modifydescription"></textarea>
                         </li>
                         <li>
-                            <h5>变更原因说明</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                变更原因说明</h5>
                             <textarea name="yewuguize" id="" class='modifyreason' cols="30" rows="5" v-model="obj1.modifyreason"></textarea>
                         </li>
                     </ul>

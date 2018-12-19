@@ -12,7 +12,7 @@
                 <ul>
                     <li>
                         <h5>专业模板</h5>
-                        <el-dropdown @command="handleCommand1" >
+                        <el-dropdown @command="handleCommand1">
                             <span class="el-dropdown-link">
                                 {{textVal1}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
@@ -25,7 +25,7 @@
                     <li>
                         <h5>一级业务域</h5>
                         <el-dropdown @command="handleCommand2">
-                            <span class="el-dropdown-link">
+                            <span class="el-dropdown-link" @click='warning1'>
                                 {{textVal2}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
@@ -35,8 +35,8 @@
                     </li>
                     <li>
                         <h5>二级业务域</h5>
-                        <el-dropdown @command="handleCommand3">
-                            <span class="el-dropdown-link">
+                        <el-dropdown @command="handleCommand3" >
+                            <span class="el-dropdown-link" @click='warning2'>
                                 {{textVal3}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
@@ -47,7 +47,7 @@
                     <li>
                         <h5>三级业务域</h5>
                         <el-dropdown @command="handleCommand4">
-                            <span class="el-dropdown-link">
+                            <span class="el-dropdown-link" @click='warning3'>
                                 {{textVal4}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
@@ -57,8 +57,8 @@
                     </li>
                     <li>
                         <h5>四级业务域</h5>
-                        <el-dropdown @command="handleCommand5">
-                            <span class="el-dropdown-link">
+                        <el-dropdown @command="handleCommand5" >
+                            <span class="el-dropdown-link" @click='warning4'>
                                 {{textVal5}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
@@ -263,6 +263,9 @@
             })
         },
         methods:{
+            addd(){
+                console.log(11111)
+            },
             /*----创建----*/
             create(){
                 this.$router.push('/AssetContentCreation');
@@ -433,6 +436,7 @@
                 this.textVal3='下拉列表';
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
+                
                 $.ajax({
                     url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
@@ -454,6 +458,7 @@
                 this.data4=[];
                 this.textVal4='下拉列表';
                 this.textVal5='下拉列表';
+                
                 $.ajax({
                     url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
@@ -473,6 +478,7 @@
                 this.obj.thirdClassificationID=command.classificationid;
                 this.data4=[];
                 this.textVal5='下拉列表';
+                
                 $.ajax({
                     url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
                     dataType: "json",
@@ -489,6 +495,7 @@
             },
             handleCommand5(command) {
                 this.textVal5=command.classificationname;
+                
                 this.obj.fourthClassificationID=command.classificationid;
             },
             handleCommand6(command) {
@@ -500,7 +507,36 @@
                 }
                 
             },
-        }
+            warning1(){
+                if(this.data1.length<=0){
+                    this.open4()
+                }
+            },
+            warning2(){
+                if(this.data2.length<=0){
+                    this.open4()
+                }
+            },
+            warning3(){
+                if(this.data3.length<=0){
+                    this.open4()
+                }
+            },
+            warning4(){
+                if(this.data4.length<=0){
+                    this.open4()
+                }
+            },
+            open4() {
+                this.$notify({
+                    title: '警告',
+                    message: '请先选择上一级',
+                    type: 'warning'
+                });
+            },
+        },
+        
+      
     }
 </script>
 <style scoped>

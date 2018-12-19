@@ -31,10 +31,10 @@ module.exports = function () {
     const mod = versionRequirements[i]
 
     if (!semver.satisfies(mod.currentVersion, mod.versionRequirement)) {
-      warnings.push(mod.name + ': ' +
-        chalk.red(mod.currentVersion) + ' should be ' +
-        chalk.green(mod.versionRequirement)
-      )
+ warnings.push(mod.name + ': ' +
+   chalk.red(mod.currentVersion) + ' should be ' +
+   chalk.green(mod.versionRequirement)
+ )
     }
   }
 
@@ -44,8 +44,8 @@ module.exports = function () {
     console.log()
 
     for (let i = 0; i < warnings.length; i++) {
-      const warning = warnings[i]
-      console.log('  ' + warning)
+ const warning = warnings[i]
+ console.log('  ' + warning)
     }
 
     console.log()
