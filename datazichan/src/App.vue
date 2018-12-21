@@ -170,6 +170,7 @@
 <style scoped>
   #app .left {
     background: #fff;
+    width: 250px;
     min-width: 250px;
     max-width: 400px;
     height: 100%;

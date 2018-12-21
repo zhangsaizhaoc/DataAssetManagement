@@ -67,13 +67,10 @@
         <el-dialog title="创建" :visible.sync="dialogFormVisible">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                 <el-form-item label="分类级别" prop="name">
-                    <el-input v-model="ruleForm.name" disabled></el-input>
+                    <el-input v-model="ruleForm.name"></el-input>
                 </el-form-item>
                 <el-form-item label="分类名称" prop="dat1">
                     <el-input v-model="ruleForm.dat1"></el-input>
-                </el-form-item>
-                <el-form-item label="父节点级别" prop="dat2">
-                    <el-input v-model="ruleForm.dat2"></el-input>
                 </el-form-item>
                 <el-form-item label="父节点名称" prop="region">
                     <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
@@ -120,6 +117,7 @@
                     ],
                     dat1:[
                         { required: true, message: '分类名称', trigger: 'blur' },
+                        { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
                     ],
                     dat2:[
                         { required: false, message: '父节点级别', trigger: 'blur' },
