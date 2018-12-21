@@ -132,6 +132,7 @@
 }
 .box table tbody tr td:nth-child(3){
     cursor: pointer;
+    color:rgb(11, 113, 247);
 }
 .box table tbody tr td span{
     text-align: center;

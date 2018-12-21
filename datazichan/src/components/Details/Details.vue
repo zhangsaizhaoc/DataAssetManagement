@@ -1,44 +1,27 @@
 <template>
   <div id='Details'>
-  
     <div class="top">
-  
       <h5>数据详情</h5>
-  
+       <h6>
+          <span @click='returnsa'>返回</span>
+      </h6>
     </div>
-  
     <div class="bottom">
-  
       <div class="box">
-  
         <h4>基本信息</h4>
-  
         <div class="inbox">
-  
           <ul>
-  
             <li>
-  
               <h5>专业模板</h5>
-  
               <input type="text" v-model="textVal1">
-  
             </li>
-  
             <li>
-  
               <h5>一级业务域</h5>
-  
               <input type="text" v-model="textVal2">
-  
             </li>
-  
             <li>
-  
               <h5>二级业务域</h5>
-  
               <input type="text" v-model="textVal3">
-  
             </li>
   
             <li>
@@ -353,149 +336,82 @@
         textVal7: '下拉列表',
   
         textVal8: '下拉列表',
-  
         textVal9: '下拉列表',
-  
         getdat: [],
-  
         obj1: {
-  
-  
-  
         },
-  
         obj: {
-  
           "businessdefinition": "供应商名称在财务系统中定义", //业务定义
-  
           "quotedstandard": "《新奥集团供应商信息编码及属性规范》", //引用标准
-  
           "businessrule": "1、供应商名称唯一，生成后通过修改流程审核后可以变更;2、供应商名称通常为企业法人的营业执照名称，特殊情况下个人也可成为供应商", //业务规则
-  
           "datarange": "无约束", //数据值域
-  
           "dataentityname": "数据实体", //实体
-  
           "acquisitionfrequency": "实时", //采集频率
-  
           "datatype": "varchar", //数据类型
-  
           "firstClassificationID": 3, //一级业务域
-  
           "systemSour": "B", //来源系统
-  
           "thirdClassificationID": 6, //三级业务域
-  
           "datasize": "xxxx", //数据s量
-  
           "dataownername": "管理员", //数据责任人
-  
           "datalength": 100, //数据长度
-  
           "fourthClassificationID": 8, //四级业务域
-  
           "dataattributenameSour": "供应商名称", //来源字段名称
-  
           "fieldnameEn": "vendor", //英文字段
-  
           "dataattributetype": "基本属性", //属性类型
-  
           "professionalPlateID": 1, //专业板块
-  
           "secondClassificationID": 5, //二级业务域
-  
           "acquisitiongeometry": "线上", //采集方式
-  
           "system": "销售管理平台", //所在系统
-  
           "databasetablename": "BBBBB", //数据表名
-  
           "departmentname": "廊坊燃气/市场部", //数据所属组织
-  
           "databasename": "AAAAA", //数据库名
-  
           "dataattributenameGo": "供应商名称", //去向字段名称
-  
           "fieldnameCn": "供应商名称", //中文字段
-  
           "dataattributename": "名称", //属性名称
-  
           "securityclassification": "无条件共享", //安全等级
-  
           "systemGo": "A" //去想系统
-  
         }
-  
       }
-  
     },
-  
     mounted() {
-  
       var _this = this;
-  
       $.ajax({
-  
         url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
-  
         dataType: "json",
-  
         method: 'POST',
-  
         data: {
-  
           "parentclassificationid": 0
-  
         },
-  
         success: function(data) {
-  
           console.log(data);
-  
           _this.data = data.data ? data.data : []
-  
         }
-  
       })
-  
       $.ajax({
-  
         url: `${this.Root}datagovern/contentbaseinfo/findDetail`,
-  
         dataType: "json",
-  
         method: 'POST',
-  
         data: {
-  
           "maintenanceid": _this.$route.query.id
-  
         },
-  
         success: function(data) {
-  
           console.log(data);
-  
           _this.obj1 = data.data;
-  
           _this.obj1.maintenanceid = _this.$route.query.id;
-  
           _this.Assignment(data.data)
-  
         }
-  
       })
-  
       this.dis();
-  
-  
-  
     },
   
   
   
     methods: {
-  
+      /*----返回----*/
+      returnsa(){
+        this.$router.push('/DataAssetChange')
+      },
+      /*----禁用所用input----*/
       dis() {
   
         var inp = $('input');

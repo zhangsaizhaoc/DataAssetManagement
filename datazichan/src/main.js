@@ -6,26 +6,25 @@ import router from './router'
 
 Vue.config.productionTip = false;
 var root = process.env.API_ROOT
-var urlstr=location.href;
 
-console.log(location)
+// var urlstr=location.href;
+// console.log(location)
 
-
-function url(urlstr){
-  var news = urlstr.split('?')[0].split('/')
-  var str='';
-  for(var i=0;i<news.length;i++){
-    console.log(news[i]=='meta-manager')
-    if(news[i]=='meta-manager'){
-      str='meta-manager';
-      break;
-    }else{
-      str='/';
-    }
-  }
-  return str;
-}
-Vue.prototype.Root=root ;
+// function url(urlstr){
+//   var news = urlstr.split('?')[0].split('/')
+//   var str='';
+//   for(var i=0;i<news.length;i++){
+//     console.log(news[i]=='meta-manager')
+//     if(news[i]=='meta-manager'){
+//       str='meta-manager';
+//       break;
+//     }else{
+//       str='/';
+//     }
+//   }
+//   return str;
+// }
+Vue.prototype.Root= '/meta-manager/' ;//'meta-manager/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)

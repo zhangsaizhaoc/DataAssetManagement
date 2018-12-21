@@ -533,22 +533,22 @@
                 
             },
             warning1(){
-                if(this.data1.length<=0){
+                if(this.data.length<=0&&this.data1.length<=0){
                     this.open4()
                 }
             },
             warning2(){
-                if(this.data2.length<=0){
+                if(this.data1.length<=0&&this.data2.length<=0){
                     this.open4()
                 }
             },
             warning3(){
-                if(this.data3.length<=0){
+                if(this.data2.length<=0&&this.data3.length<=0){
                     this.open4()
                 }
             },
             warning4(){
-                if(this.data4.length<=0){
+                if(this.data3.length<=0&&this.data4.length<=0){
                     this.open4()
                 }
             },

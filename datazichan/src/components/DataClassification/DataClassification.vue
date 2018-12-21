@@ -63,7 +63,6 @@
                 :total="totalCount">
             </el-pagination>
         </div>
-
         <el-dialog title="创建" :visible.sync="dialogFormVisible">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                 <el-form-item label="分类级别" prop="name">
@@ -87,15 +86,10 @@
 </template>
 <script>
     import $ from 'jquery'
-    
     export default {
-    
         name: 'DataClassification',
-    
         data() {
-    
             return {
-    
                 data: [], //数据
                 classificationlevelname: '专业板块', //
                 currentPage4: 4,
@@ -113,7 +107,8 @@
                 },
                 rules: {
                     name: [
-                        { required: true, message: '分类级别', trigger: 'blur' }
+                        { required: true, message: '分类级别', trigger: 'blur' },
+                        { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
                     ],
                     dat1:[
                         { required: true, message: '分类名称', trigger: 'blur' },
@@ -147,10 +142,8 @@
                 }
             })
         },
-    
         watch: {
         },
-    
         methods: {
             /*----添加----*/
     
@@ -211,6 +204,14 @@
                                     _this.totalCount = data.totalCount;
                                     _this.list = data.data.list;
                                     _this.dialogFormVisible = false;
+                                    _this.ruleForm={
+                                        name: '',
+                                        region: '',
+                                        dat1: '',
+                                        dat2: '',
+                                        ind:0
+                                    };
+                                    _this.reload()
                                 }
                             })
                         }
@@ -237,9 +238,7 @@
                 });
     
             },
-    
             /*----返回----*/
-    
             returns() {
                 var obj=this.list.splice(-2);
                 var _this=this
@@ -264,7 +263,7 @@
                             console.log(data);
                             if (data.data) {
                                 _this.data = data.data.datas ? data.data.datas : [];
-                                _this.totalCount = data.data.totalCount;
+                                _this.totalCount = data.totalCount;
                                 _this.list=data.data.list
                             } else {
                                 _this.open(data)
@@ -363,7 +362,7 @@
                         console.log(data);
                         if (data.data) {
                             _this.data = data.data.datas ? data.data.datas : [];
-                            _this.totalCount = data.data.totalCount;
+                            _this.totalCount = data.totalCount;
                             _this.list=data.data.list
                         } else {
                             _this.open(data)
@@ -409,7 +408,8 @@
                             success: function(data) {
                                 console.log(data);
                                 _this.data = data.data.datas ? data.data.datas : [];
-                                _this.totalCount = data.data.totalCount
+                                _this.totalCount = data.totalCount;
+                                _this.reload();
                             }
                         })
                     }
@@ -419,7 +419,7 @@
             up(obj) {
                 var _this = this;
                 console.log(obj)
-                if(this.$refs.tbody.rows.length>1){
+                if(obj.num!==1){
                     $.ajax({
                         url: `${this.Root}datagovern/classification/updateSort`,
                         dataType: "json",
@@ -448,7 +448,7 @@
                                     success: function(data) {
                                         console.log(data);
                                         _this.data = data.data.datas ? data.data.datas : [];
-                                        _this.totalCount = data.data.totalCount;
+                                        _this.totalCount = data.totalCount;
                                         _this.list=data.data.list
                                     }
                                 })
@@ -465,7 +465,7 @@
                                     success: function(data) {
                                         console.log(data);
                                             _this.data = data.data.datas ? data.data.datas : [];
-                                            _this.totalCount = data.data.totalCount;
+                                            _this.totalCount = data.totalCount;
                                             _this.list=data.data.list
                                     }
                                 }) 
@@ -475,7 +475,7 @@
         
                     })
                 }else{
-                    this.open({errMsg:'只有一条数据，不支持上下切换'})
+                    this.open({errMsg:'这是第一条数据，不支持上下切换'})
                 }
             },
     
@@ -484,7 +484,7 @@
             down(obj) {
     
                 var _this = this;
-                if(this.$refs.tbody.rows.length>1){
+                if(obj.num!==_this.totalCount){
                     $.ajax({
                         url: `${this.Root}datagovern/classification/updateSort`,
                         dataType: "json",
@@ -512,7 +512,7 @@
                                     success: function(data) {
                                         console.log(data);
                                         _this.data = data.data.datas ? data.data.datas : [];
-                                        _this.totalCount = data.data.totalCount;
+                                        _this.totalCount = data.totalCount;
                                         _this.list=data.data.list
                                     }
                                 })
@@ -529,7 +529,7 @@
                                     success: function(data) {
                                         console.log(data);
                                             _this.data = data.data.datas ? data.data.datas : [];
-                                            _this.totalCount = data.data.totalCount;
+                                            _this.totalCount = data.totalCount;
                                             _this.list=data.data.list
                                     }
                                 }) 
@@ -538,7 +538,7 @@
                         }
                     })
                 }else{
-                    this.open({errMsg:'只有一条数据，不支持上下切换'})
+                    this.open({errMsg:'这是最后一条数据，不支持上下切换'})
                 }
                 
     
@@ -613,56 +613,30 @@
 </script>
 <style scoped>
     @import './DataClassification.style.css';
-    
     .icon {
-    
         width: 1em;
-    
         height: 1em;
-    
         vertical-align: -0.15em;
-    
         fill: currentColor;
-    
         overflow: hidden;
-    
     }
-    
-    
-    
+    .el-select{
+        width: 100%;
+    }
     .el-pagination {
-    
         width: 100%;
-    
         height: 50px;
-    
         margin-top: 20px;
-    
         text-align: center;
-    
         background: #fff;
-    
         display: flex;
-    
         justify-content: center;
-    
         align-items: center;
-    
     }
-    
-    
-    
     .el-pagination .el-pagination__total {
-    
         margin-left: 10px;
-    
     }
-    
-    
-    
     .el-date-editor {
-    
         width: 100%;
-    
     }
 </style>

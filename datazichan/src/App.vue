@@ -4,7 +4,7 @@
       <ul>
         <li ref='clicka' @click='fnc'>
           <h6><i class='el-icon-caret-right'></i> 数据资产查询</h6>
-          <el-tree :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
+          <el-tree v-if="isRouterAlive" :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
           </el-tree>
         </li>
         <li ref='lis' @click="fnc2">
@@ -105,6 +105,27 @@
       reload() {
         this.isRouterAlive = false
         this.$nextTick(() => (this.isRouterAlive = true))
+        var _this=this;
+        $.ajax({
+          url: `${this.Root}datagovern/classification/findMenu`,
+          dataType: "json",
+          method: 'POST',
+          data: {
+            "id": 0,
+            "name": "",
+            "parentid": "",
+            "status": 0
+          },
+          success: function(data) {
+            console.log(data);
+            _this.data = data.data.length > 0 ? data.data : [{
+              id: 1,
+              name: "能源板块",
+              parentid: 0,
+              status: 0
+            }]
+          }
+        })
       },
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
@@ -193,8 +214,11 @@
     width: 100%;
     height: 40px;
     overflow: hidden;
-    line-height: 40px;
     box-sizing: border-box;
+  }
+  .left ul li:first-child{
+    width: 100%;
+    height: 40px;
   }
   .left ul li h6{
     width: 100%;
@@ -211,6 +235,7 @@
   .left ul li:last-child p{
     width: 100%;
     height: 40px;
+    line-height: 40px;
     padding: 0;
   }
   .left ul li a {
@@ -220,6 +245,7 @@
     font-size: 14px;
     color: #4E4E4E;
     text-decoration: none;
+    font-weight: 900;
   }
   
   .left ul li h6 {
@@ -228,7 +254,6 @@
     line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
-    font-weight: 100;
   }
   
   .el-tree {

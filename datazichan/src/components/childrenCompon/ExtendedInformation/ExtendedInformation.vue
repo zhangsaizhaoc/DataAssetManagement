@@ -153,7 +153,6 @@
   #ExtendedInformation ul li span:first-child {
     width: 220px;
     padding-left: 20px;
-    text-align: center;
     box-sizing: border-box
   
   }
