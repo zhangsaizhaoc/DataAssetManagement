@@ -571,5 +571,6 @@
         width: 20%;
     }
     #DataAssetChange ul li .el-input__inner{
+        width: 100%;
     }
 </style>

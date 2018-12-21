@@ -88,7 +88,7 @@
                 <el-form-item label="分类名称" prop="dat1">
                     <el-input v-model="ruleForm2.dat1"></el-input>
                 </el-form-item>
-                <el-form-item label="父节点名称" prop="region" v-if='ruleForm.name=="专业板块"?false:true'>
+                <el-form-item label="父节点名称" prop="region" v-if='ruleForm2.ind=="专业板块"?false:true'>
                     <el-select v-model="ruleForm2.region" placeholder="请选择活动区域">
                     <el-option v-for="(item,index) in dataLIst" :key='index' :label="item.classificationname" :value="item.classificationid"></el-option>
                     </el-select>
@@ -148,7 +148,7 @@
                         { required: false, message: '父节点级别', trigger: 'blur' },
                     ],
                     region: [
-                        { required: false, message: '父节点名称', trigger: 'change' }
+                        { required: true, message: '父节点名称', trigger: 'change' }
                     ],
                 },
                 rules2: {
@@ -164,7 +164,7 @@
                         { required: false, message: '父节点级别', trigger: 'blur' },
                     ],
                     region: [
-                        { required: false, message: '父节点名称', trigger: 'change' }
+                        { required: true, message: '父节点名称', trigger: 'change' },
                     ],
                 },
                 isRouterAlive3:true
@@ -238,7 +238,6 @@
             /*----增加提交----*/
             submitForm(formName) {
                 var _this=this;
-                
                 this.$refs[formName].validate((valid) => {
                 if (valid) {
                     console.log(this.ruleForm);
@@ -322,7 +321,7 @@
                                     _this.totalCount = data.totalCount;
                                     _this.list = data.data.list;
                                     _this.dialogFormVisible2 = false;
-                                    _this.ruleForm={
+                                    _this.ruleForm2={
                                         name: '',
                                         region: '',
                                         dat1: '',
