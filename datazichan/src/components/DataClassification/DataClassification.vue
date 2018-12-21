@@ -21,7 +21,7 @@
                             <use xlink:href="#icon-fanhui"></use>
                         </svg> 返回
                     </h5>
-                    <table cellspacing="0" cellpadding="0">
+                    <table cellspacing="0" cellpadding="0" v-if='isRouterAlive3'>
                         <thead>
                             <tr>
                                 <th>序号</th>
@@ -40,7 +40,7 @@
                                 <td>{{item.parentclassificationlevelname?item.parentclassificationlevelname:'-'}}</td>
                                 <td>{{item.parentclassificationname?item.parentclassificationname:'-'}}</td>
                                 <td>
-                                    <i class='el-icon-edit-outline'></i>
+                                    <i class='el-icon-edit-outline' @click='xiangqingxiugai(item)'></i>
                                     <i class='el-icon-delete' @click="Delete(item)"></i>
                                     <svg class="icon shang" aria-hidden="true" @click='up(item)'>
                                         <use xlink:href="#icon-xiangshang"></use>
@@ -71,7 +71,7 @@
                 <el-form-item label="分类名称" prop="dat1">
                     <el-input v-model="ruleForm.dat1"></el-input>
                 </el-form-item>
-                <el-form-item label="父节点名称" prop="region">
+                <el-form-item label="父节点名称" prop="region" v-if='ruleForm.name=="专业板块"?false:true'>
                     <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
                     <el-option v-for="(item,index) in dataLIst" :key='index' :label="item.classificationname" :value="item.classificationid"></el-option>
                     </el-select>
@@ -82,12 +82,34 @@
                 </el-form-item>
             </el-form>
         </el-dialog>
+
+        <el-dialog title="编辑" :visible.sync="dialogFormVisible2">
+            <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
+                <el-form-item label="分类名称" prop="dat1">
+                    <el-input v-model="ruleForm2.dat1"></el-input>
+                </el-form-item>
+                <el-form-item label="父节点名称" prop="region">
+                    <el-select v-model="ruleForm2.region" placeholder="请选择活动区域">
+                    <el-option v-for="(item,index) in dataLIst" :key='index' :label="item.classificationname" :value="item.classificationid"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm2('ruleForm2')">立即修改</el-button>
+                    <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 <script>
     import $ from 'jquery'
     export default {
         name: 'DataClassification',
+        provide() {
+            return {
+                reload3: this.reload3
+            }
+        },
         data() {
             return {
                 data: [], //数据
@@ -98,7 +120,15 @@
                 ind:1,
                 dataLIst:[],
                 dialogFormVisible: false,
+                dialogFormVisible2: false,
                 ruleForm: {
+                    name: '',
+                    region: '',
+                    dat1: '',
+                    dat2: '',
+                    ind:0
+                },
+                ruleForm2: {
                     name: '',
                     region: '',
                     dat1: '',
@@ -120,10 +150,28 @@
                     region: [
                         { required: false, message: '父节点名称', trigger: 'change' }
                     ],
-                }
+                },
+                rules2: {
+                    name: [
+                        { required: true, message: '分类级别', trigger: 'blur' },
+                        { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
+                    ],
+                    dat1:[
+                        { required: true, message: '分类名称', trigger: 'blur' },
+                        { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
+                    ],
+                    dat2:[
+                        { required: false, message: '父节点级别', trigger: 'blur' },
+                    ],
+                    region: [
+                        { required: false, message: '父节点名称', trigger: 'change' }
+                    ],
+                },
+                isRouterAlive3:true
             }
         },
-        inject: ['reload'],
+        inject: ['reload','reload2'],
+        
         mounted() {
             var _this = this;
             $.ajax({
@@ -145,8 +193,21 @@
         watch: {
         },
         methods: {
+            reload3() {
+                this.isRouterAlive3 = false
+                this.$nextTick(() => (this.isRouterAlive3 = true))
+                var _this=this;
+            },
+            xiangqingxiugai(data){
+                this.dialogFormVisible2=true;
+                console.log()
+                this.ruleForm2.name=data.classificationid;
+                this.ruleForm2.dat1=data.classificationname;
+                this.ruleForm2.region=data.parentclassificationname;
+                this.ruleForm.dat2=data.parentclassificationlevelname;
+                this.dataGet(this.ruleForm.dat2)
+            },
             /*----添加----*/
-    
             add() {
                 this.dialogFormVisible = true;
                 var tds=this.$refs.tbody.rows[0].querySelectorAll('td');
@@ -155,6 +216,7 @@
                 this.ruleForm.dat2=tds[3].innerHTML=='-'?'':tds[3].innerHTML;
                 this.dataGet(this.ruleForm.dat2);
             },
+            /*----获取数据父节点名称----*/ 
             dataGet(val){
                 var _this=this
                 $.ajax({
@@ -171,6 +233,7 @@
                     }
                 })
             },
+            /*----增加提交----*/
             submitForm(formName) {
                 var _this=this;
                 this.$refs[formName].validate((valid) => {
@@ -211,7 +274,60 @@
                                         dat2: '',
                                         ind:0
                                     };
-                                    _this.reload()
+                                    _this.reload2();
+                                    _this.reload3();
+                                }
+                            })
+                        }
+                    })
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+                });
+            },
+            /*----修改提交----*/
+            submitForm2(formName2) {
+                var _this=this;
+                this.$refs[formName2].validate((valid) => {
+                if (valid) {
+                    console.log(this.ruleForm);
+                    $.ajax({
+                        url: `${this.Root}datagovern/classification/update`,
+                        dataType: "json",
+                        method: 'POST',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify({
+                            "classificationid":_this.ruleForm2.name,
+                            "parentclassificationid":_this.ruleForm2.region?_this.ruleForm2.region:0,
+                            "classificationname":_this.ruleForm2.dat1,
+                            "userName":"read"
+                        }),
+                        success: function(data) {
+                            console.log(data); 
+                            $.ajax({
+                                url: `${_this.Root}datagovern/classification/findByLevel`,
+                                dataType: "json",
+                                method: 'POST',
+                                contentType: "application/json;charset=utf-8",
+                                data: JSON.stringify({
+                                    "classificationlevelname": _this.ruleForm2.dat1
+                                }),
+                                success: function(data) {
+                                    console.log(data);
+                                    _this.data = data.data.datas ? data.data.datas : [];
+                                    _this.totalCount = data.totalCount;
+                                    _this.list = data.data.list;
+                                    _this.dialogFormVisible2 = false;
+                                    _this.ruleForm={
+                                        name: '',
+                                        region: '',
+                                        dat1: '',
+                                        dat2: '',
+                                        ind:0
+                                    };
+                                    _this.reload2();
+                                    _this.reload();
                                 }
                             })
                         }
@@ -409,7 +525,8 @@
                                 console.log(data);
                                 _this.data = data.data.datas ? data.data.datas : [];
                                 _this.totalCount = data.totalCount;
-                                _this.reload();
+                                _this.reload3();
+                                _this.reload2();
                             }
                         })
                     }
@@ -620,9 +737,11 @@
         fill: currentColor;
         overflow: hidden;
     }
+    
     .el-select{
         width: 100%;
     }
+    
     .el-pagination {
         width: 100%;
         height: 50px;

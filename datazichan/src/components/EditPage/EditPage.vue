@@ -314,7 +314,7 @@
                 </div>
 
             </div>
-            <div class="box last">
+            <div class="box last" v-if='obj1.modifyid'>
                 <h4>变更信息说明</h4>
                 <div class="inbox">
                     <ul>
@@ -397,6 +397,8 @@
                     "databasetablename": "BBBBB",//数据表名
                     "departmentname": "廊坊燃气/市场部",//数据所属组织
                     "databasename": "AAAAA",//数据库名
+                    "modifyid":'', 
+                    "status":'',
                     "dataattributenameGo": "供应商名称",//去向字段名称
                     "fieldnameCn": "供应商名称",//中文字段
                     "dataattributename": "名称",//属性名称

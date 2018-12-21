@@ -170,6 +170,7 @@
                 layout=" prev, pager, next, jumper, total"
                 :total="totalCount">
             </el-pagination>
+            
             <el-dialog
                 title="提示"
                 :visible.sync="dialogVisible"
@@ -533,7 +534,7 @@
                 
             },
             warning1(){
-                if(this.data.length<=0&&this.data1.length<=0){
+                if(this.data.length<=0||this.data1.length<=0){
                     this.open4()
                 }
             },

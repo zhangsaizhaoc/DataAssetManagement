@@ -3,8 +3,8 @@
     <div class="left">
       <ul>
         <li ref='clicka' @click='fnc'>
-          <h6><i class='el-icon-caret-right'></i> 数据资产查询</h6>
-          <el-tree v-if="isRouterAlive" :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
+          <h6><router-link to="/"><i class='el-icon-caret-right'></i>数据资产查询</router-link></h6>
+          <el-tree v-if="isRouterAlive2" :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
           </el-tree>
         </li>
         <li ref='lis' @click="fnc2">
@@ -29,12 +29,14 @@
     name: 'App',
     provide() {
       return {
-        reload: this.reload
+        reload: this.reload,
+        reload2: this.reload2
       }
     },
     data() {
       return {
         isRouterAlive: true,
+        isRouterAlive2: true,
         data: [{ //默认树形菜单
           id: 1,
           name: "能源板块",
@@ -48,6 +50,8 @@
         },
         arr: [], //面包屑传值
         flag: false,
+        textVal:'',
+        functi:null
       }
     },
     mounted() {
@@ -106,6 +110,11 @@
         this.isRouterAlive = false
         this.$nextTick(() => (this.isRouterAlive = true))
         var _this=this;
+      },
+      reload2() {
+        this.isRouterAlive2 = false
+        this.$nextTick(() => (this.isRouterAlive2 = true))
+        var _this=this;
         $.ajax({
           url: `${this.Root}datagovern/classification/findMenu`,
           dataType: "json",
@@ -132,6 +141,8 @@
         var _this = this;
         console.log(resolve)
         console.log(node)
+        this.textVal=node;
+        this.functi=resolve;
         if (node.level >=6) {
           return resolve([]);
         };
@@ -182,7 +193,6 @@
           });
           this.reload()
         }
-  
       }
     }
   }
@@ -223,20 +233,19 @@
   .left ul li h6{
     width: 100%;
     height: 40px;
-    line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
     box-sizing: border-box;
   }
   .left ul li:last-child{
-    padding-left: 20px;
+    padding-left: 14px;
     height: 80px;
   }
-  .left ul li:last-child p{
+  #app .left ul li:last-child p{
     width: 100%;
     height: 40px;
     line-height: 40px;
-    padding: 0;
+    padding: 0 !important;
   }
   .left ul li a {
     display: inline-block;
@@ -247,15 +256,6 @@
     text-decoration: none;
     font-weight: 900;
   }
-  
-  .left ul li h6 {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    font-size: 14px;
-    color: #4E4E4E;
-  }
-  
   .el-tree {
     margin-left: 10px;
     width: 100%;

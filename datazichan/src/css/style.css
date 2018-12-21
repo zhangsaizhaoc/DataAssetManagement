@@ -54,11 +54,17 @@ html,body,#app{
 .upload-demo ul li.el-upload-list__item:first-child{
     margin-top: 0;
 }
+.el-date-editor--daterange.el-input__inner{
+    width: 100%;
+}
 .el-pagination__jump{
     margin-right: 20px;
 }
 .el-input{
     vertical-align: middle;
+}
+.el-input__inner{
+    height: 40px;
 }
 #app .left .el-tree .el-tree__empty-block{
     width: 100%;

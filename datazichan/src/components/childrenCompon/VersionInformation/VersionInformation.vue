@@ -71,7 +71,7 @@
   
       $.ajax({
   
-        url: "/datagovern/contentbaseinfo/findVersion",
+        url: `${this.Root}datagovern/contentbaseinfo/findVersion`,
   
         dataType: "json",
   
