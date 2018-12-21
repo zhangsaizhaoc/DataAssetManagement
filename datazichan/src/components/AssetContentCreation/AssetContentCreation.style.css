@@ -222,6 +222,12 @@
 .box:last-child ul li{
     width: 20%;
 }
+.box:nth-child(2) ul li>p{
+    color: #778199;
+}
+.box:nth-child(2) ul li>p>span{
+    color: rgb(27, 248, 7);
+}
 .btns{
     width: 100%;
     height: 50px;

@@ -143,7 +143,8 @@
                                 </svg>
                                 业务定义
                             </h5>
-                           <textarea name="yewudingyi" id="" class='businessdefinition' cols="20" rows="5"></textarea>
+                           <textarea name="yewudingyi" id=""  ref='businessde' width='100%' class='businessdefinition' cols="20" rows="5" v-model="yewudyval" @keyup="WordLimit1"></textarea>
+                           <p ref="businessdefinition">限制500字，您还可以输入 <span>{{yewudynum}}</span> 字</p>
                         </li>
                         <li>
                             <h5>
@@ -152,7 +153,8 @@
                                 </svg>
                                 业务规则
                             </h5>
-                            <textarea name="yewuguize" id="" class='businessrule' cols="20" rows="5"></textarea>
+                            <textarea name="yewuguize" id="" width='100%' class='businessrule' cols="20" rows="5" v-model="yewugzval" @keyup="WordLimit2"></textarea>
+                            <p ref='businessrule'>限制500字，您还可以输入 <span>{{yewugznum}}</span> 字</p>
                         </li>
                     </ul>
                 </div>
@@ -387,6 +389,10 @@
                 flag:false,
                 textVale:"浏览",
                 userUploadFile: [],
+                yewudynum:500,
+                yewudyval:'',
+                yewugznum:500,
+                yewugzval:'',
                 data:[],
                 data1:[],
                 data2:[],
@@ -452,6 +458,30 @@
             })
         },
         methods:{
+            WordLimit1(){
+                this.yewudynum=500-this.yewudyval.length;
+                var textval=''
+                if(this.yewudynum>0&&this.yewudynum<=500){
+                    // this.$refs.businessde.disabled=true;
+                    textval=this.yewudyval;
+                    this.$refs.businessdefinition.querySelector('span').style.color='rgb(27, 248, 7)';
+                }else{
+                    this.yewudynum=0;
+                    this.yewudyval=this.yewudyval.substr(0,501);
+                    this.$refs.businessdefinition.querySelector('span').style.color='#f00';
+                }
+            },
+            WordLimit2(){
+                this.yewugznum=500-this.yewugzval.length;
+                if(this.yewugznum>0&&this.yewugznum<=500){
+                    // this.$refs.businessde.disabled=true;
+                    this.$refs.businessrule.querySelector('span').style.color='rgb(27, 248, 7)';
+                }else{
+                    this.yewugznum=0;
+                    this.yewugzval=this.yewugzval.substr(0,501);
+                    this.$refs.businessrule.querySelector('span').style.color='#f00';
+                }
+            },
             /*----遮罩层----*/
             open(data) {
                 var teval='';
