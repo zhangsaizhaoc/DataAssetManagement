@@ -1,120 +1,91 @@
 <template>
     <div id="DataClassification">
-    
         <div class="top">
-    
             <h4>数据资产分类维护</h4>
-    
             <div class="nav" @click='eventDelegation' ref="nav">
-    
                 <p>分类维护对象筛选</p>
-    
-                <span class='clicka'>专业板块</span>
-    
-                <span>一级业务域</span>
-    
-                <span>二级业务域</span>
-    
-                <span>三级业务域</span>
-    
-                <span>四级业务域</span>
-    
+                <b class='clicka'>专业板块</b>
+                <b>一级业务域</b>
+                <b>二级业务域</b>
+                <b>三级业务域</b>
+                <b>四级业务域</b>
             </div>
-    
         </div>
-    
         <div class="bottom">
-    
             <div class="box">
-    
                 <h5>专业板块分类维护</h5>
-    
                 <div class="inbox">
-    
-                    <h6 @click='add'><i class="el-icon-circle-plus-outline"></i> 增加</h6>
-    
+                    <h6 @click="add"><i class="el-icon-circle-plus-outline"></i> 增加</h6>
                     <h5 @click='returns'>
-    
                         <svg class="icon" aria-hidden="true">
-    
-                                <use xlink:href="#icon-fanhui"></use>
-    
-                            </svg> 返回
-    
+                            <use xlink:href="#icon-fanhui"></use>
+                        </svg> 返回
                     </h5>
-    
                     <table cellspacing="0" cellpadding="0">
-    
                         <thead>
-    
                             <tr>
-    
                                 <th>序号</th>
-    
                                 <th>分类级别</th>
-    
                                 <th>分类名称</th>
-    
                                 <th>父节点级别</th>
-    
                                 <th>父节点名称</th>
-    
                                 <th>操作</th>
-    
                             </tr>
-    
                         </thead>
-    
                         <tbody ref='tbody' id='tbody'>
-    
                             <tr v-for='(item,index) in data' :key='index'>
-    
                                 <td>{{item.num}}</td>
-    
-                                <td>{{item.classificationlevelname}}</td>
-    
+                                <td :ind='item.classificationlevel'>{{item.classificationlevelname}}</td>
                                 <td @click="GetDataAxios(item)">{{item.classificationname}}</td>
-    
                                 <td>{{item.parentclassificationlevelname?item.parentclassificationlevelname:'-'}}</td>
-    
                                 <td>{{item.parentclassificationname?item.parentclassificationname:'-'}}</td>
-    
                                 <td>
-    
                                     <i class='el-icon-edit-outline'></i>
-    
                                     <i class='el-icon-delete' @click="Delete(item)"></i>
-    
                                     <svg class="icon shang" aria-hidden="true" @click='up(item)'>
-    
-                                            <use xlink:href="#icon-xiangshang"></use>
-    
-                                        </svg>
-    
+                                        <use xlink:href="#icon-xiangshang"></use>
+                                    </svg>
                                     <svg class="icon" aria-hidden="true" @click='down(item)'>
-    
-                                            <use xlink:href="#icon-xiangshang"></use>
-    
-                                        </svg>
-    
+                                        <use xlink:href="#icon-xiangshang"></use>
+                                    </svg>
                                 </td>
-    
                             </tr>
-    
                         </tbody>
-    
                     </table>
-    
                 </div>
-    
             </div>
-    
-            <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-size="10" layout=" prev, pager, next, jumper, total" :total="totalCount">
-    
+            <el-pagination 
+                @size-change="handleSizeChange" 
+                @current-change="handleCurrentChange" 
+                :current-page="currentPage4" 
+                :page-size="10" 
+                layout=" prev, pager, next, jumper, total" 
+                :total="totalCount">
             </el-pagination>
-    
         </div>
-    
+
+        <el-dialog title="创建" :visible.sync="dialogFormVisible">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+                <el-form-item label="分类级别" prop="name">
+                    <el-input v-model="ruleForm.name" disabled></el-input>
+                </el-form-item>
+                <el-form-item label="分类名称" prop="dat1">
+                    <el-input v-model="ruleForm.dat1"></el-input>
+                </el-form-item>
+                <el-form-item label="父节点级别" prop="dat2">
+                    <el-input v-model="ruleForm.dat2"></el-input>
+                </el-form-item>
+                <el-form-item label="父节点名称" prop="region">
+                    <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+                    <el-option v-for="(item,index) in dataLIst" :key='index' :label="item.classificationname" :value="item.classificationid"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
+                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -129,50 +100,53 @@
             return {
     
                 data: [], //数据
-    
                 classificationlevelname: '专业板块', //
-    
                 currentPage4: 4,
-    
                 totalCount: 0,
-    
                 list: null,
-                ind:1
+                ind:1,
+                dataLIst:[],
+                dialogFormVisible: false,
+                ruleForm: {
+                    name: '',
+                    region: '',
+                    dat1: '',
+                    dat2: '',
+                    ind:0
+                },
+                rules: {
+                    name: [
+                        { required: true, message: '分类级别', trigger: 'blur' }
+                    ],
+                    dat1:[
+                        { required: true, message: '分类名称', trigger: 'blur' },
+                    ],
+                    dat2:[
+                        { required: false, message: '父节点级别', trigger: 'blur' },
+                    ],
+                    region: [
+                        { required: false, message: '父节点名称', trigger: 'change' }
+                    ],
+                }
             }
         },
         inject: ['reload'],
         mounted() {
-    
             var _this = this;
-    
             $.ajax({
-    
                 url: `${this.Root}datagovern/classification/findByLevel`,
-    
                 dataType: "json",
-    
                 method: 'POST',
-    
                 contentType: "application/json;charset=utf-8",
-    
                 data: JSON.stringify({
-    
                     "classificationlevelname": _this.classificationlevelname
-    
                 }),
-    
                 success: function(data) {
-    
                     console.log(data);
-    
                     _this.data = data.data.datas ? data.data.datas : [];
-    
                     _this.totalCount = data.totalCount;
-    
                     _this.list = data.data.list;
-    
                 }
-    
             })
         },
     
@@ -180,7 +154,78 @@
         },
     
         methods: {
+            /*----添加----*/
     
+            add() {
+                this.dialogFormVisible = true;
+                var tds=this.$refs.tbody.rows[0].querySelectorAll('td');
+                this.ruleForm.name=tds[1].innerHTML;
+                this.ruleForm.ind=tds[1].getAttribute("ind");
+                this.ruleForm.dat2=tds[3].innerHTML=='-'?'':tds[3].innerHTML;
+                this.dataGet(this.ruleForm.dat2);
+            },
+            dataGet(val){
+                var _this=this
+                $.ajax({
+                    url: `${this.Root}datagovern/classification/findByLevel`,
+                    dataType: "json",
+                    method: 'POST',
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify({
+                        "classificationlevelname": val
+                    }),
+                    success: function(data) {
+                        console.log(data); 
+                        _this.dataLIst=data.data.datas?data.data.datas:[];
+                    }
+                })
+            },
+            submitForm(formName) {
+                var _this=this;
+                this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    console.log(this.ruleForm);
+                    $.ajax({
+                        url: `${this.Root}datagovern/classification/create`,
+                        dataType: "json",
+                        method: 'POST',
+                        contentType: "application/json;charset=utf-8",
+                        data: JSON.stringify({
+                            "classificationname":_this.ruleForm.dat1,
+                            "parentclassificationid":_this.ruleForm.region?_this.ruleForm.region:0,
+                            "classificationlevel":_this.ruleForm.ind,
+                            "classificationlevelname":_this.ruleForm.name,
+                            "userName":"read"
+                        }),
+                        success: function(data) {
+                            console.log(data); 
+                            $.ajax({
+                                url: `${_this.Root}datagovern/classification/findByLevel`,
+                                dataType: "json",
+                                method: 'POST',
+                                contentType: "application/json;charset=utf-8",
+                                data: JSON.stringify({
+                                    "classificationlevelname": _this.ruleForm.name
+                                }),
+                                success: function(data) {
+                                    console.log(data);
+                                    _this.data = data.data.datas ? data.data.datas : [];
+                                    _this.totalCount = data.totalCount;
+                                    _this.list = data.data.list;
+                                    _this.dialogFormVisible = false;
+                                }
+                            })
+                        }
+                    })
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            },
             open(data) {
     
                 var teval = '';
@@ -202,6 +247,11 @@
                 var _this=this
                 console.log(this.list)
                 console.log(obj)
+                var b=this.$refs.nav.querySelectorAll('b');
+                for(var i=0;i<b.length;i++){
+                    b[i].className='';
+                }
+                var tds='';
                 if(obj[0].id){
                     $.ajax({
                         url: `${this.Root}datagovern/classification/findByParent`,
@@ -222,6 +272,14 @@
                                 _this.open(data)
         
                             }
+                            setTimeout(()=>{
+                                tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
+                                console.log(tds)
+                                for(var i=0;i<b.length;i++){
+                                    if(tds==b[i].innerHTML)
+                                    b[i].className='clicka';
+                                }
+                            },10)
                         }
                     })
                 }else if(obj[0].name){
@@ -240,7 +298,15 @@
                             console.log(data);
                             _this.data = data.data.datas ? data.data.datas : [];
                             _this.totalCount = data.totalCount;
-                            _this.list = data.data.list
+                            _this.list = data.data.list;
+                            setTimeout(()=>{
+                                tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
+                                console.log(tds)
+                                for(var i=0;i<b.length;i++){
+                                    if(tds==b[i].innerHTML)
+                                    b[i].className='clicka';
+                                }
+                            },10)
                         }
                     })
                 }else if(obj.length<=1){
@@ -258,42 +324,34 @@
                             _this.data = data.data.datas ? data.data.datas : [];
                             _this.totalCount = data.totalCount;
                             _this.list = data.data.list;
+                            setTimeout(()=>{
+                                tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
+                                console.log(tds)
+                                for(var i=0;i<b.length;i++){
+                                    if(tds==b[i].innerHTML)
+                                    b[i].className='clicka';
+                                }
+                            },10)
                         }
             
                     })
                 }
+                
             },
     
-            /*----添加----*/
-    
-            add() {
-                var str =$( `<span data-v-0d66e5e2 @click='confirm'>确认</span><span  data-v-0d66e5e2 @click='cancel'>取消</span>`);
-                var td2 = $("<td>");
-                td2.html(str);
-                var tr = $("<tr>");
-                for (var i = 0; i < 5; i++) {
-                    var td = $("<td data-v-0d66e5e2></td>");
-                    var inp = '<input data-v-0d66e5e2 type="text"/>'
-                    td.html(inp);
-                    tr.append(td);
-                }
-                tr.append(td2)
-                console.log(this.$refs.tbody.getAttribute('data-v-0d66e5e2'))
-                $("#tbody").append(tr)
-            },
-            cancel(){
-
-            },
-            confirm(){
-                var input=$('input');
-                console.log(input,11111)
-            },
+            
             /*----级别----*/
     
             GetDataAxios(val) {
-    
+               
+                var b=this.$refs.nav.querySelectorAll('b');
+                for(var i=0;i<b.length;i++){
+                    b[i].className='';
+                }
+                var tds='';
                 var _this = this;
                 console.log(val)
+                
                 $.ajax({
                     url: `${this.Root}datagovern/classification/findByParent`,
                     dataType: "json",
@@ -313,6 +371,15 @@
                             _this.open(data)
     
                         }
+                        setTimeout(()=>{
+                            tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
+                            console.log(tds)
+                            for(var i=0;i<b.length;i++){
+                                if(tds==b[i].innerHTML)
+                                b[i].className='clicka';
+                            }
+                        },10)
+                        
                     }
                 })
     
@@ -321,127 +388,97 @@
             /*----删除----*/
     
             Delete(obj) {
-    
                 var _this = this;
-    
                 var arr = [];
-    
                 arr.push()
-    
                 $.ajax({
-    
                     url: `${this.Root}datagovern/classification/delete`,
-    
                     dataType: "json",
-    
                     method: 'POST',
-    
-                    contentType: "application/json;charset=utf-8",
-    
                     data: {
-    
                         "classificationid": obj.classificationid
-    
                     },
-    
                     success: function(data) {
-    
                         console.log(data);
-    
                         $.ajax({
-    
-                            url: `${this.Root}datagovern/classification/findByLevel`,
-    
+                            url: `${_this.Root}datagovern/classification/findByLevel`,
                             dataType: "json",
-    
                             method: 'POST',
-    
                             contentType: "application/json;charset=utf-8",
-    
-                            data: {
-    
+                            data: JSON.stringify({
                                 "classificationlevelname": _this.classificationlevelname
-    
-                            },
-    
+                            }),
                             success: function(data) {
-    
                                 console.log(data);
-    
-                                _this.data = data.data ? data.data : [];
-    
-                                _this.totalCount = data.data ? data.data.length : 0
-    
+                                _this.data = data.data.datas ? data.data.datas : [];
+                                _this.totalCount = data.data.totalCount
                             }
-    
                         })
-    
                     }
-    
                 })
-    
             },
-    
             /*----向上----*/
-    
             up(obj) {
                 var _this = this;
                 console.log(obj)
-                $.ajax({
-                    url: `${this.Root}datagovern/classification/updateSort`,
-                    dataType: "json",
-                    method: 'POST',
-                    data: {
-                        "num":obj.num,
-                        "classificationid": obj.classificationid,
-                        "sort": obj.sort,
-                        "status": 0,
-                        "id":_this.list[_this.list.length-1].id,
-                        "name":_this.list[_this.list.length-1].name
-                    },
-    
-                    success: function(data) {
-    
-                        if(_this.list[_this.list.length-1].name){
-                            $.ajax({
-                                url: `${_this.Root}datagovern/classification/findByLevel`,
-                                dataType: "json",
-                                method: 'POST',
-                                contentType: "application/json;charset=utf-8",
-                                data: JSON.stringify({
-                                    "classificationlevelname": _this.list[_this.list.length-1].name,
-                                    "list":_this.list.splice(0,_this.list.length-1)
-                                }),
-                                success: function(data) {
-                                    console.log(data);
-                                    _this.data = data.data.datas ? data.data.datas : [];
-                                    _this.totalCount = data.data.totalCount;
-                                     _this.list=data.data.list
-                                }
-                            })
-                        }else if(_this.list[_this.list.length-1].id){
-                           $.ajax({
-                                url: `${_this.Root}datagovern/classification/findByParent`,
-                                dataType: "json",
-                                method: 'POST',
-                                contentType: "application/json;charset=utf-8",
-                                data: JSON.stringify({
-                                    "classificationid": _this.list[_this.list.length-1].id,
-                                    "list":_this.list.splice(0,_this.list.length-1)
-                                }),
-                                success: function(data) {
-                                    console.log(data);
+                if(this.$refs.tbody.rows.length>1){
+                    $.ajax({
+                        url: `${this.Root}datagovern/classification/updateSort`,
+                        dataType: "json",
+                        method: 'POST',
+                        data: {
+                            "num":obj.num,
+                            "classificationid": obj.classificationid,
+                            "sort": obj.sort,
+                            "status": 0,
+                            "id":_this.list[_this.list.length-1].id,
+                            "name":_this.list[_this.list.length-1].name
+                        },
+        
+                        success: function(data) {
+        
+                            if(_this.list[_this.list.length-1].name){
+                                $.ajax({
+                                    url: `${_this.Root}datagovern/classification/findByLevel`,
+                                    dataType: "json",
+                                    method: 'POST',
+                                    contentType: "application/json;charset=utf-8",
+                                    data: JSON.stringify({
+                                        "classificationlevelname": _this.list[_this.list.length-1].name,
+                                        "list":_this.list.splice(0,_this.list.length-1)
+                                    }),
+                                    success: function(data) {
+                                        console.log(data);
                                         _this.data = data.data.datas ? data.data.datas : [];
                                         _this.totalCount = data.data.totalCount;
                                         _this.list=data.data.list
-                                }
-                            }) 
+                                    }
+                                })
+                            }else if(_this.list[_this.list.length-1].id){
+                            $.ajax({
+                                    url: `${_this.Root}datagovern/classification/findByParent`,
+                                    dataType: "json",
+                                    method: 'POST',
+                                    contentType: "application/json;charset=utf-8",
+                                    data: JSON.stringify({
+                                        "classificationid": _this.list[_this.list.length-1].id,
+                                        "list":_this.list.splice(0,_this.list.length-1)
+                                    }),
+                                    success: function(data) {
+                                        console.log(data);
+                                            _this.data = data.data.datas ? data.data.datas : [];
+                                            _this.totalCount = data.data.totalCount;
+                                            _this.list=data.data.list
+                                    }
+                                }) 
+                            }
+        
                         }
-    
-                    }
-    
-                })
-    
+        
+                    })
+                }else{
+                    this.open({errMsg:'只有一条数据，不支持上下切换'})
+                }
             },
     
             /*----向下----*/
@@ -449,102 +486,82 @@
             down(obj) {
     
                 var _this = this;
-    
-                $.ajax({
-    
-                    url: `${this.Root}datagovern/classification/updateSort`,
-    
-                    dataType: "json",
-    
-                    method: 'POST',
-    
-                    data: {
-                        "num":obj.num,
-                        "classificationid": obj.classificationid,
-                        "sort": obj.sort,
-                        "status": 1,
-                        "id":_this.list[_this.list.length-1].id,
-                        "name":_this.list[_this.list.length-1].name
-    
-                    },
-    
-                    success: function(data) {
-    
-                        console.log(data);
-
-                        if(_this.list[_this.list.length-1].name){
-                            $.ajax({
-                                url: `${_this.Root}datagovern/classification/findByLevel`,
-                                dataType: "json",
-                                method: 'POST',
-                                contentType: "application/json;charset=utf-8",
-                                data: JSON.stringify({
-                                    "classificationlevelname": _this.list[_this.list.length-1].name,
-                                    "list":_this.list.splice(0,_this.list.length-1)
-                                }),
-                                success: function(data) {
-                                    console.log(data);
-                                    _this.data = data.data.datas ? data.data.datas : [];
-                                    _this.totalCount = data.data.totalCount;
-                                     _this.list=data.data.list
-                                }
-                            })
-                        }else if(_this.list[_this.list.length-1].id){
-                           $.ajax({
-                                url: `${_this.Root}datagovern/classification/findByParent`,
-                                dataType: "json",
-                                method: 'POST',
-                                contentType: "application/json;charset=utf-8",
-                                data: JSON.stringify({
-                                    "classificationid": _this.list[_this.list.length-1].id,
-                                    "list":_this.list.splice(0,_this.list.length-1)
-                                }),
-                                success: function(data) {
-                                    console.log(data);
+                if(this.$refs.tbody.rows.length>1){
+                    $.ajax({
+                        url: `${this.Root}datagovern/classification/updateSort`,
+                        dataType: "json",
+                        method: 'POST',
+                        data: {
+                            "num":obj.num,
+                            "classificationid": obj.classificationid,
+                            "sort": obj.sort,
+                            "status": 1,
+                            "id":_this.list[_this.list.length-1].id,
+                            "name":_this.list[_this.list.length-1].name
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            if(_this.list[_this.list.length-1].name){
+                                $.ajax({
+                                    url: `${_this.Root}datagovern/classification/findByLevel`,
+                                    dataType: "json",
+                                    method: 'POST',
+                                    contentType: "application/json;charset=utf-8",
+                                    data: JSON.stringify({
+                                        "classificationlevelname": _this.list[_this.list.length-1].name,
+                                        "list":_this.list.splice(0,_this.list.length-1)
+                                    }),
+                                    success: function(data) {
+                                        console.log(data);
                                         _this.data = data.data.datas ? data.data.datas : [];
                                         _this.totalCount = data.data.totalCount;
                                         _this.list=data.data.list
-                                }
-                            }) 
+                                    }
+                                })
+                            }else if(_this.list[_this.list.length-1].id){
+                            $.ajax({
+                                    url: `${_this.Root}datagovern/classification/findByParent`,
+                                    dataType: "json",
+                                    method: 'POST',
+                                    contentType: "application/json;charset=utf-8",
+                                    data: JSON.stringify({
+                                        "classificationid": _this.list[_this.list.length-1].id,
+                                        "list":_this.list.splice(0,_this.list.length-1)
+                                    }),
+                                    success: function(data) {
+                                        console.log(data);
+                                            _this.data = data.data.datas ? data.data.datas : [];
+                                            _this.totalCount = data.data.totalCount;
+                                            _this.list=data.data.list
+                                    }
+                                }) 
+                            }
+        
                         }
-    
-                    }
-                })
+                    })
+                }else{
+                    this.open({errMsg:'只有一条数据，不支持上下切换'})
+                }
+                
     
             },
     
             /*----时间委托----*/
-    
             eventDelegation(e) {
-    
                 var e = e || window.event;
-    
                 var target = e.target || e.srcElement; //兼容
-    
-                var span = document.querySelectorAll('span');
-    
-                for (var i = 0; i < span.length; i++) {
-    
-                    span[i].className = ''
-    
+                var b = document.querySelectorAll('b');
+                for (var i = 0; i < b.length; i++) {
+                    b[i].className = ''
                 }
-    
-                for (var i in span) {
-    
-                    if (target === span[i]) { //判断点击的是否是一个span
-    
-                        this.classificationlevelname = span[i].innerHTML;
-    
+                for (var i in b) {
+                    if (target === b[i]) { //判断点击的是否是一个b
+                        this.classificationlevelname = b[i].innerHTML;
                         var value = parseInt(i);
-    
-                        span[i].className = 'clicka'
-    
+                        b[i].className = 'clicka'
                     }
-    
                 }
-    
                 this.getData();
-    
             },
     
             /*----获取数据----*/

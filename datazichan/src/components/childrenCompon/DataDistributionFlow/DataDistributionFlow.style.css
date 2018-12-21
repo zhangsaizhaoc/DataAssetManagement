@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 40px 0 0;
     box-sizing: border-box;
+    position: relative;
 }
 #DataDistributionFlow .left,.right,.center{
     flex:1;
@@ -93,4 +94,36 @@
     z-index:0;
     top:50%;
     margin-top: -0.5px;
+}
+.tulist{
+    width: 200px;
+    position: fixed;
+    left:400px;
+    bottom: 50px;
+}
+.tulist li{
+    width: 100%;  
+    font-size: 12px;
+    color: #778199; 
+    line-height: 30px; 
+}
+.tulist li span{
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    border-radius: 4px;
+    vertical-align:middle;
+    margin-right: 8px;
+}
+.tulist li:first-child span{
+    background: #DAE8FF;
+    border:solid 1px #1D6DFC;
+}
+.tulist li:nth-child(2) span{
+    background: #FFFFFF;
+    border: 1px solid #778199;
+}
+.tulist li:last-child span {
+    background: #D8F2DF;
+    border: 1px solid #6ED088;
 }

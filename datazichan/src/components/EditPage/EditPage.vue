@@ -607,10 +607,11 @@
             },
             Assignment(data){
                 var data=data?data:{}
+                console.log(data);
                 this.textVal6=data.dataattributetype;
                 this.textVal7=data.acquisitiongeometry;
                 this.textVal8=data.acquisitionfrequency;
-                this.textVal9=data.datarange;
+                this.textVal9=data.securityclassification;
                 this.obj1.dataentityname=data.dataentityname;
                 this.obj1.dataattributename=data.dataattributename;
                 this.obj1.departmentname=data.departmentname;
@@ -662,9 +663,12 @@
                     success: function(data) {
                         console.log(data);
                         _this.open(data);
+                        if(data.success){
+                            _this.$router.push('/DataAssetChange')
+                        }
                     }
                 })
-                this.$router.push('/DataAssetChange')
+                
                 console.log(this.obj1)
             },
             /*----保存----*/

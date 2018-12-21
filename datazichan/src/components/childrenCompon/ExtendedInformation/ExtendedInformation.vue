@@ -150,32 +150,17 @@
     font-size: 14px;
   
   }
-  
-  
-  
   #ExtendedInformation ul li span:first-child {
-  
-    width: 120px;
-  
+    width: 220px;
     padding-left: 20px;
-  
+    text-align: center;
     box-sizing: border-box
   
   }
-  
-  
-  
   #ExtendedInformation ul li span:last-child {
-  
     flex: 1;
-  
   }
-  
-  
-  
   #ExtendedInformation ul li:nth-child(2n) {
-  
     background: #FCFCFC;
-  
   }
 </style>

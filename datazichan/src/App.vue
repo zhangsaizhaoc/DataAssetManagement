@@ -7,11 +7,13 @@
           <el-tree :data="data" :props="props1" :load="loadNode1" :highlight-current='true' lazy @node-click="handleNodeClick">
           </el-tree>
         </li>
-        <li>
-          <router-link to="/DataClassification">数据资产分类维护</router-link>
-        </li>
-        <li>
-          <router-link to="/DataAssetChange">数据资产内容维护</router-link>
+        <li ref='lis' @click="fnc2">
+          <p>
+            <router-link to="/DataClassification">数据资产分类维护</router-link>
+          </p>
+          <p>
+            <router-link to="/DataAssetChange">数据资产内容维护</router-link>
+          </p>
         </li>
       </ul>
     </div>
@@ -93,6 +95,12 @@
           this.flag = true;
         }
       },
+      fnc2() {
+          this.$refs.clicka.style.height = '40px';
+          this.$refs.clicka.querySelector('h6').querySelector('i').className = 'el-icon-caret-right'
+          this.flag = false;
+        
+      },
       /*----刷新路由----*/
       reload() {
         this.isRouterAlive = false
@@ -101,9 +109,10 @@
       /*----树形菜单加载----*/
       loadNode1(node, resolve) {
         var _this = this;
-        if (node.data.status >= 2) {
-          resolve([]);
-  
+        console.log(resolve)
+        console.log(node)
+        if (node.level >=6) {
+          return resolve([]);
         };
         setTimeout(() => {
           $.ajax({
@@ -117,6 +126,9 @@
             }
           })
         }, 500);
+      },
+      heights(){
+
       },
       /*----树形菜单点击----*/
       handleNodeClick(data) {
@@ -158,9 +170,11 @@
 <style scoped>
   #app .left {
     background: #fff;
-    width: 250px;
+    min-width: 250px;
+    max-width: 400px;
     height: 100%;
     overflow-x: hidden;
+    box-sizing: border-box;
   }
   
   #app .right {
@@ -174,15 +188,23 @@
     padding: 0 6px;
   }
   
-  .left ul li {
+  .left ul li,.left ul li h6  {
     width: 100%;
     height: 40px;
     overflow: hidden;
     line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
+    box-sizing: border-box;
   }
-  
+  .left ul li:last-child{
+    padding-left: 20px;
+    height: 80px;
+  }
+  .left ul li:last-child p{
+    width: 100%;
+    height: 40px;
+  }
   .left ul li a {
     display: inline-block;
     width: 100%;
@@ -203,5 +225,8 @@
   
   .el-tree {
     margin-left: 10px;
+    width: 100%;
+    min-height: 40px;
   }
+  
 </style>

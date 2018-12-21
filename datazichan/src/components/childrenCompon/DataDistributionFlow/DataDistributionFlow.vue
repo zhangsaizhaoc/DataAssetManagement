@@ -2,75 +2,46 @@
   <div id="DataDistributionFlow" style=' overflow-y:auto;height: auto;'>
   
     <div class="left">
-  
       <h5>来源系统</h5>
-  
       <div class="main">
         <h6></h6>
-  
         <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameSour'>
-  
           {{item.dataattributenameSour}}
-  
           <span>{{item.systemSour}}</span>
-  
           <em></em>
-  
         </p>
-  
         <p style='height: 47px;border:0;background:none' v-for='(item,index) in data2.list' :key='index' v-if='!item.dataattributenameSour'></p>
-  
       </div>
-  
     </div>
-  
     <div class="center">
-  
       <h5>实体数据</h5>
-  
       <div class="main">
-  
         <h6><span>{{data2.dataentityname}}</span></h6>
-  
         <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameSour||item.dataattributenameGo'>
-  
           <b></b> {{item.dataattributename}}
-  
           <span>{{item.system}}</span>
-  
           <em v-if='item.dataattributenameGo'></em>
-  
         </p>
-  
       </div>
-  
     </div>
-  
     <div class="right">
-  
       <h5>去向系统</h5>
-  
       <div class="main">
-  
         <h6></h6>
-  
         <p v-for='(item,index) in data2.list' :key='index' v-if='item.dataattributenameGo'>
-  
           {{item.dataattributenameGo}}
-  
           <span>{{item.systemGo}}</span>
-  
         </p>
-  
         <p style='height: 47px;border:0;background:none' v-for='(item,index) in data2.list' :key='index' v-if='!item.dataattributenameGo'></p>
-  
       </div>
-  
     </div>
-  
+    <ul class="tulist">
+      <li><span></span>数据实体</li>
+      <li><span></span>数据属性</li>
+      <li><span></span>系统名称</li>
+    </ul>
   </div>
 </template>
-
 <script>
   import $ from 'jquery'
   

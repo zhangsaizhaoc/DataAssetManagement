@@ -25,7 +25,7 @@
         $.ajax({
             url: `${this.Root}datagovern/contentbaseinfo/findInfo`,
             dataType: "json",
-            method: 'GET',
+            method: 'POST',
             data: {
               "classificationid":this.$route.query.data.parentid,
               "dataentityname": this.$route.query.data.name,
@@ -78,7 +78,7 @@
     font-size:14px;
   }
   #BasicInformation ul li span:first-child{
-    width:120px;
+    width:220px;
     padding-left:20px;
     box-sizing: border-box
   }

@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false;
+var root = process.env.API_ROOT
 var urlstr=location.href;
 
 console.log(location)
@@ -16,17 +17,15 @@ function url(urlstr){
   for(var i=0;i<news.length;i++){
     console.log(news[i]=='meta-manager')
     if(news[i]=='meta-manager'){
- console.log(111)
- str='meta-manager';
- break;
+      str='meta-manager';
+      break;
     }else{
-  str='/';
+      str='/';
     }
   }
   return str;
 }
-console.log(url(urlstr));
-Vue.prototype.Root=url(urlstr);
+Vue.prototype.Root=root ;
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)

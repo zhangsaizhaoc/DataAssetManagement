@@ -13,8 +13,6 @@
   
         <el-breadcrumb-item v-for='(item,index) in arr' :key='index' v-if='item'>{{item}}</el-breadcrumb-item>
   
-  
-  
       </el-breadcrumb>
   
     </div>
@@ -23,7 +21,7 @@
   
       <el-tabs v-model="activeName" @tab-click="handleClick">
   
-        <el-tab-pane label="基础信息" name="first">
+        <el-tab-pane label="基本信息" name="first">
   
           <BasicInformation></BasicInformation>
   

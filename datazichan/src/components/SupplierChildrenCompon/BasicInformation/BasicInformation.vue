@@ -189,7 +189,7 @@
   
   #BasicInformation ul li span:first-child {
   
-    width: 120px;
+    width: 220px;
   
     padding-left: 20px;
   

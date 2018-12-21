@@ -14,9 +14,10 @@
                         <h5>专业模板</h5>
                         <el-dropdown @command="handleCommand1">
                             <span class="el-dropdown-link">
-                                {{textVal1}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal1=='下拉列表'?"全部":textVal1?textVal1:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item  v-for='(item,index) in data' :key='index' :command="item"
                                 >{{item.classificationname}}</el-dropdown-item>
                             </el-dropdown-menu>
@@ -26,9 +27,10 @@
                         <h5>一级业务域</h5>
                         <el-dropdown @command="handleCommand2">
                             <span class="el-dropdown-link" @click='warning1'>
-                                {{textVal2}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal2=='下拉列表'?"全部":textVal2?textVal2:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item v-for='(item,index) in data1' :key='index' :command="item">{{item.classificationname}}</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -37,9 +39,10 @@
                         <h5>二级业务域</h5>
                         <el-dropdown @command="handleCommand3" >
                             <span class="el-dropdown-link" @click='warning2'>
-                                {{textVal3}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal3=='下拉列表'?"全部":textVal3?textVal3:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item v-for='(item,index) in data2' :key='index' :command="item">{{item.classificationname}}</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -48,9 +51,10 @@
                         <h5>三级业务域</h5>
                         <el-dropdown @command="handleCommand4">
                             <span class="el-dropdown-link" @click='warning3'>
-                                {{textVal4}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal4=='下拉列表'?"全部":textVal4?textVal4:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item v-for='(item,index) in data3' :key='index' :command="item">{{item.classificationname}}</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -59,9 +63,10 @@
                         <h5>四级业务域</h5>
                         <el-dropdown @command="handleCommand5" >
                             <span class="el-dropdown-link" @click='warning4'>
-                                {{textVal5}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal5=='下拉列表'?"全部":textVal5?textVal5:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item v-for='(item,index) in data4' :key='index' :command="item">{{item.classificationname}}</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -87,9 +92,10 @@
                         <h5>状态</h5>
                         <el-dropdown @command="handleCommand6">
                             <span class="el-dropdown-link">
-                                {{textVal6}}<i class="el-icon-arrow-down el-icon--right"></i>
+                                {{textVal6=='下拉列表'?"全部":textVal6?textVal6:'全部'}}<i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="">全部</el-dropdown-item>
                                 <el-dropdown-item command="待提交">待提交</el-dropdown-item>
                                 <el-dropdown-item command="已提交">已提交</el-dropdown-item>
                             </el-dropdown-menu>
@@ -164,6 +170,17 @@
                 layout=" prev, pager, next, jumper, total"
                 :total="totalCount">
             </el-pagination>
+            <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>确定删除这条信息吗</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="handleClose">确 定</el-button>
+                </span>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -185,6 +202,8 @@
                 textVal4:'下拉列表',
                 textVal5:'下拉列表',
                 textVal6:'下拉列表',
+                dialogVisible: false,
+                dialogVisible2:false,
                 currentPage4: 4,
                 totalCount:0,
                 pickerOptions2: {
@@ -229,7 +248,7 @@
                     "startTime":"",
                     "endTime":""
                 },
-
+                chuanshu:{}
             
             }
         },
@@ -252,7 +271,7 @@
                 }
             })
             $.ajax({
-                url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
+                url: `${_this.Root}datagovern/contentbaseinfo/findByScreen`,
                 dataType: "json",
                 method: 'GET',
                 success: function(data) {
@@ -263,9 +282,6 @@
             })
         },
         methods:{
-            addd(){
-                console.log(11111)
-            },
             /*----创建----*/
             create(){
                 this.$router.push('/AssetContentCreation');
@@ -274,31 +290,37 @@
             maintain(){
                 this.$router.push('/DataClassification');
             },
-            /*----删除----*/
-            Delete(obj){
+            handleClose(){
                 var _this=this;
                 $.ajax({
                     url: `${this.Root}datagovern/contentbaseinfo/delete`,
                     dataType: "json",
                     method: 'GET',
                     data:{
-                        maintenanceid:obj.maintenanceid
+                        maintenanceid:_this.chuanshu.maintenanceid
                     },
                     success: function(data) {
                     console.log(data);
                     _this.reload();
                         $.ajax({
-                            url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
+                            url: `${_this.Root}datagovern/contentbaseinfo/findByScreen`,
                             dataType: "json",
                             method: 'GET',
                             success: function(data) {
                             console.log(data);
                                 _this.dataList=data.data?data.data:[];
                                 _this.totalCount=data?data.totalCount:0;
+                                _this.dialogVisible=false;
                             }
                         })
                     }
                 })
+            },
+            /*----删除----*/
+            Delete(obj){
+                var _this=this;
+                this.dialogVisible=true;
+                this.chuanshu=obj;
             },
             /*----重置----*/
             Reset(){
@@ -325,7 +347,7 @@
                 this.textVal6='下拉列表';
                 this.value7='';
                  $.ajax({
-                    url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
+                    url: `${_this.Root}datagovern/contentbaseinfo/findByScreen`,
                     dataType: "json",
                     method: 'GET',
                     success: function(data) {
@@ -343,9 +365,9 @@
                 for(var i=0;i<inp.length;i++){
                     if(inp[i].className!='el-range-input'){
                         this.obj[inp[i].className]=inp[i].value;
-                    }
-                    
+                    } 
                 }
+                console.log(this.obj)
                 $.ajax({
                     url: `${this.Root}datagovern/contentbaseinfo/findByScreen`,
                     dataType: "json",
@@ -361,13 +383,14 @@
             /*----监听时间time——time----*/
             onChange(date){
                 console.log(date)
+
                 var statey=this.value7[0]?new Date(this.value7[0]).getFullYear():'',
                     statem=this.value7[0]?new Date(this.value7[0]).getMonth()+1:'',
                     stated=this.value7[0]?new Date(this.value7[0]).getDate():'';
 
                 var endy=this.value7[1]?new Date(this.value7[1]).getFullYear():'',
                     endm=this.value7[1]?new Date(this.value7[1]).getMonth()+1:'',
-                    endd=this.value7[1]?new Date(this.value7[1]).getDate():'';
+                    endd=this.value7[1]?new Date(this.value7[1]).getDate()+1:'';
                 this.obj.startTime=statey+'-'+statem+'-'+stated
                 this.obj.endTime=endy+'-'+endm+'-'+endd
 
@@ -502,8 +525,10 @@
                 this.textVal6=command;
                 if(command=='已提交'){
                     this.obj.status=1;
-                }else{
+                }else if(command=='待提交'){
                     this.obj.status=0;
+                }else{
+                    this.obj.status=''
                 }
                 
             },

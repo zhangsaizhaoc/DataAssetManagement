@@ -14,6 +14,7 @@
     line-height: 34px;
     font-family: 'PingFangSC-Medium';
     color:#4E4E4E;
+    margin-bottom: 20px;
 }
 .el-breadcrumb .el-breadcrumb__item span{
     color:#B7BBC3;

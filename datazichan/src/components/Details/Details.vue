@@ -579,17 +579,10 @@
                 }
   
               }) : []
-  
               _this.data1 = data.data;
-  
             }
-  
           })
-  
         }
-  
-  
-  
         if (datas.secondClassificationID) {
   
           $.ajax({
@@ -722,7 +715,7 @@
   
         this.textVal8 = data.acquisitionfrequency;
   
-        this.textVal9 = data.datarange;
+        this.textVal9 = data.securityclassification;
   
         this.obj1.dataentityname = data.dataentityname;
   

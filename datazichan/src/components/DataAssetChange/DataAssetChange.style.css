@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 48px;
+    box-sizing: border-box;
 }
 .top h5{
     font-size: 24px;
@@ -103,6 +104,7 @@
     width: 100%;
     height: auto;
     background: #fff;
+    box-sizing: border-box;
 }
 .bottom table{
     width: 100%;
@@ -114,6 +116,7 @@
     height: 36px;
     background: #E8F0FF;
     border-radius: 4px 4px 0 0;
+    box-sizing: border-box;
 }
 .bottom table thead tr th{
     font-size: 12px;
@@ -126,20 +129,27 @@
 .bottom table tbody tr{
     width: 100%;
     height: 44px;
-    padding:0 4px;
+    padding:0 10px;
     box-sizing: border-box;
 }
 .bottom table tbody tr td:first-child{
     width: 50px;
 }
 .bottom table tbody tr td:last-child{
-    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bottom table tbody tr td:last-child a{
+    color:#778199;
+    text-decoration: none;
 }
 .bottom table tbody tr:nth-child(2n){
     background: #FCFCFC;
 }
 .bottom table tbody tr td{
     text-align: center;
+    height: 44px;
     font-size: 12px;
     color: #778199;
     border-bottom: solid 1px #ccc;
@@ -166,17 +176,21 @@
     padding: 4px 8px;
 }
 .bottom table tbody tr em{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 20px;
     height: 20px;
     border:solid 1px #778199;
     border-radius: 50%;
     line-height: 20px;
     text-align: center;
+    text-decoration: none;
 }
 #DataAssetChange .bottom table tbody tr em i{
     font-size: 14px;
     margin-left: 0;
+    color:#778199;
 }
 
 .el-pagination{
@@ -194,6 +208,7 @@
 .box .btns{
     width: 100%;
     text-align: center;
+    box-sizing: border-box;
 }
 .btns span {
     padding: 8px 14px;

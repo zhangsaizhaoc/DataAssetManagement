@@ -10,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 48px;
+    box-sizing: border-box;
 }
 .top h5{
     font-size: 24px;
@@ -18,6 +19,7 @@
 
 .list {
     width: 100%;
+    box-sizing: border-box;
 }
 .list li{
     font-size: 12px;
@@ -48,12 +50,14 @@
     font-size: 14px;
     color: #010F35;
     margin-bottom: 30px;
+    box-sizing: border-box;
 }
 .box ul{
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 .box ul li{
     width: 30%;
@@ -81,6 +85,7 @@
 .box:nth-child(2) ul li,.last .inbox ul li{
     width: 46%;
     padding: 20px 0;
+    box-sizing: border-box;
 }
 .box:nth-child(2) ul li textarea{
     width: 100%;

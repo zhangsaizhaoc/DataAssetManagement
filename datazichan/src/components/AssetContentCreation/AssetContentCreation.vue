@@ -64,7 +64,11 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>三级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true" v-if='data3.length'>
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                三级业务域</h5>
                             <el-dropdown @command="handleCommand4">
                                 <span class="el-dropdown-link" @click="warning3">
                                     {{textVal4}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -75,7 +79,11 @@
                             </el-dropdown>
                         </li>
                         <li>
-                            <h5>四级业务域</h5>
+                            <h5>
+                                <svg class="icon" aria-hidden="true" v-if='data4.length'>
+                                    <use xlink:href="#icon-yuanhuan"></use>
+                                </svg>
+                                四级业务域</h5>
                             <el-dropdown @command="handleCommand5" >
                                 <span class="el-dropdown-link" @click="warning4">
                                     {{textVal5}}<i class="el-icon-arrow-down el-icon--right"></i>
@@ -101,7 +109,7 @@
                                 </svg>
                                 数据属性名称
                             </h5>
-                            <input type="text" class='dataattributetype'>
+                            <input type="text" class='dataattributename'>
                         </li>
                         <li>
                             <h5>
@@ -357,7 +365,7 @@
                     <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">导入</el-button>
                 </el-upload>
                 <div class="download">
-                    <a href="/template/exporTemplate.xlsx">模板下载</a>
+                    <a :href="this.Root+'template/exporTemplate.xlsx'">模板下载</a>
                 </div>
                 <ol class='list'>
                     <li>模板要求及说明</li>
@@ -479,9 +487,11 @@
                     success: function(data) {
                         console.log(data);
                         _this.open(data);
+                        if(data.success){
+                            _this.$router.push('/DataAssetChange')
+                        } 
                     }
                 })
-                this.$router.push('/DataAssetChange')
                 console.log(this.obj)
             },
             /*----保存----*/
@@ -744,22 +754,22 @@
                 fileReader.readAsBinaryString(files[0]);
             },
             warning1(){
-                if(this.data1.length<=0){
+                if(this.data.length<=0&&this.data1.length<=0){
                     this.open4()
                 }
             },
             warning2(){
-                if(this.data2.length<=0){
+                if(this.data1.length<=0&&this.data2.length<=0){
                     this.open4()
                 }
             },
             warning3(){
-                if(this.data3.length<=0){
+                if(this.data2.length<=0&&this.data3.length<=0){
                     this.open4()
                 }
             },
             warning4(){
-                if(this.data4.length<=0){
+                if(this.data3.length<=0&&this.data4.length<=0){
                     this.open4()
                 }
             },

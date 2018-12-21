@@ -234,6 +234,7 @@
     align-items: center;
   
     line-height: 34px;
+    height: 34px;
   
     border-bottom: solid 1px #E3E7F1;
   
@@ -263,7 +264,7 @@
   
   #VersionInformation ul li span:nth-child(3) {
   
-    width: 120px;
+    width: 150px;
   
     padding-left: 20px;
   
