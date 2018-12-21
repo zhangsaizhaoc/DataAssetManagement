@@ -1,9 +1,8 @@
 <template>
   <div class="hello">
-    <img src="../images/sy1544782158.png" alt="">
+    <img :src="this.Root+'/static/img/sy1544782158.fe618af.png'" alt="">
   </div>
 </template>
-
 <script>
 export default {
   name: 'HelloWorld',

@@ -88,7 +88,7 @@
                 <el-form-item label="分类名称" prop="dat1">
                     <el-input v-model="ruleForm2.dat1"></el-input>
                 </el-form-item>
-                <el-form-item label="父节点名称" prop="region">
+                <el-form-item label="父节点名称" prop="region" v-if='ruleForm.name=="专业板块"?false:true'>
                     <el-select v-model="ruleForm2.region" placeholder="请选择活动区域">
                     <el-option v-for="(item,index) in dataLIst" :key='index' :label="item.classificationname" :value="item.classificationid"></el-option>
                     </el-select>
@@ -218,7 +218,7 @@
             },
             /*----获取数据父节点名称----*/ 
             dataGet(val){
-
+                console.log(val)
                 var _this=this;
                 $.ajax({
                     url: `${this.Root}datagovern/classification/findByLevel`,
@@ -226,7 +226,8 @@
                     method: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify({
-                        "classificationlevelname": val
+                        "classificationlevelname": val,
+                        "rows":'100'
                     }),
                     success: function(data) {
                         console.log(data); 
@@ -551,9 +552,8 @@
                             "id":_this.list[_this.list.length-1].id,
                             "name":_this.list[_this.list.length-1].name
                         },
-        
                         success: function(data) {
-        
+                            _this.reload2();
                             if(_this.list[_this.list.length-1].name){
                                 $.ajax({
                                     url: `${_this.Root}datagovern/classification/findByLevel`,
@@ -588,9 +588,9 @@
                                             _this.list=data.data.list
                                     }
                                 }) 
-                            }
-        
+                            } 
                         }
+                        
         
                     })
                 }else{
@@ -618,6 +618,7 @@
                         },
                         success: function(data) {
                             console.log(data);
+                            _this.reload2();
                             if(_this.list[_this.list.length-1].name){
                                 $.ajax({
                                     url: `${_this.Root}datagovern/classification/findByLevel`,
@@ -743,7 +744,6 @@
     .el-select{
         width: 100%;
     }
-    
     .el-pagination {
         width: 100%;
         height: 50px;

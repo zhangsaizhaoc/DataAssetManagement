@@ -570,5 +570,6 @@
     .el-dropdown-menu{
         width: 20%;
     }
-    
+    #DataAssetChange ul li .el-input__inner{
+    }
 </style>
