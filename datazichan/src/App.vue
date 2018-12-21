@@ -188,10 +188,16 @@
     padding: 0 6px;
   }
   
-  .left ul li,.left ul li h6  {
+  .left ul li{
     width: 100%;
     height: 40px;
     overflow: hidden;
+    line-height: 40px;
+    box-sizing: border-box;
+  }
+  .left ul li h6{
+    width: 100%;
+    height: 40px;
     line-height: 40px;
     font-size: 14px;
     color: #4E4E4E;
@@ -204,6 +210,7 @@
   .left ul li:last-child p{
     width: 100%;
     height: 40px;
+    padding: 0;
   }
   .left ul li a {
     display: inline-block;
