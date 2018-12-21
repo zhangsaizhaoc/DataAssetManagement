@@ -11,8 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // "/": 'http://10.37.148.35:8090/'
-      "/": 'http://10.2.96.97:8080/'
+      "/": 'http://10.37.148.35:8090/'
+      // "/": 'http://10.2.96.97:8080/'
 
     },
 
@@ -47,7 +47,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/meta-manager/',
+    assetsPublicPath: '/',
 
     /**
 * Source Maps

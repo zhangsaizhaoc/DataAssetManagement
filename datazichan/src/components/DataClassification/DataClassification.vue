@@ -200,25 +200,26 @@
             },
             xiangqingxiugai(data){
                 this.dialogFormVisible2=true;
-                console.log()
+                console.log(data)
                 this.ruleForm2.name=data.classificationid;
                 this.ruleForm2.dat1=data.classificationname;
-                this.ruleForm2.region=data.parentclassificationname;
                 this.ruleForm.dat2=data.parentclassificationlevelname;
+                this.ruleForm2.ind=data.classificationlevelname
                 this.dataGet(this.ruleForm.dat2)
             },
             /*----添加----*/
             add() {
                 this.dialogFormVisible = true;
-                var tds=this.$refs.tbody.rows[0].querySelectorAll('td');
-                this.ruleForm.name=tds[1].innerHTML;
-                this.ruleForm.ind=tds[1].getAttribute("ind");
-                this.ruleForm.dat2=tds[3].innerHTML=='-'?'':tds[3].innerHTML;
+                var tds=this.$refs.tbody.rows[0]?this.$refs.tbody.rows[0].querySelectorAll('td'):'';
+                this.ruleForm.name=tds[1]? tds[1].innerHTML:'四级业务域';
+                this.ruleForm.ind=tds[1] ? tds[1].getAttribute("ind"):"5";
+                this.ruleForm.dat2=tds[3]? tds[3].innerHTML:'三级业务域';
                 this.dataGet(this.ruleForm.dat2);
             },
             /*----获取数据父节点名称----*/ 
             dataGet(val){
-                var _this=this
+
+                var _this=this;
                 $.ajax({
                     url: `${this.Root}datagovern/classification/findByLevel`,
                     dataType: "json",
@@ -236,6 +237,7 @@
             /*----增加提交----*/
             submitForm(formName) {
                 var _this=this;
+                
                 this.$refs[formName].validate((valid) => {
                 if (valid) {
                     console.log(this.ruleForm);
@@ -291,7 +293,7 @@
                 var _this=this;
                 this.$refs[formName2].validate((valid) => {
                 if (valid) {
-                    console.log(this.ruleForm);
+                    console.log(this.ruleForm2);
                     $.ajax({
                         url: `${this.Root}datagovern/classification/update`,
                         dataType: "json",
@@ -311,7 +313,7 @@
                                 method: 'POST',
                                 contentType: "application/json;charset=utf-8",
                                 data: JSON.stringify({
-                                    "classificationlevelname": _this.ruleForm2.dat1
+                                    "classificationlevelname": _this.ruleForm2.ind
                                 }),
                                 success: function(data) {
                                     console.log(data);
@@ -327,7 +329,7 @@
                                         ind:0
                                     };
                                     _this.reload2();
-                                    _this.reload();
+                                    _this.reload3();
                                 }
                             })
                         }

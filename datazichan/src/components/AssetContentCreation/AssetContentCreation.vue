@@ -783,7 +783,7 @@
                 fileReader.readAsBinaryString(files[0]);
             },
             warning1(){
-                if(this.data.length<=0&&this.data1.length<=0){
+                if(this.data.length<=0||this.data1.length<=0){
                     this.open4()
                 }
             },

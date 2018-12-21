@@ -1,22 +1,13 @@
 <template>
   <div id="VersionInformation">
-  
     <ul>
-  
       <li>
-  
         <span>版本号</span>
-  
         <span>{{data.maintenanceversion}}</span>
-  
       </li>
-  
       <li>
-  
         <span>创建\变更时间</span>
-  
         <span>{{data.operationtime}}</span>
-  
       </li>
   
       <li>
@@ -68,21 +59,14 @@
     mounted() {
   
       var _this = this;
-  
+      console.log(this.Root)
       $.ajax({
-  
         url: `${this.Root}datagovern/contentbaseinfo/findVersion`,
-  
         dataType: "json",
-  
         method: 'POST',
-  
         data: {  
-  
           "classificationid": this.$route.query.data.parentid,
-  
             "dataentityname": this.$route.query.data.name
-  
         },
   
         success: function(data) {

@@ -24,7 +24,7 @@ var root = process.env.API_ROOT
 //   }
 //   return str;
 // }
-Vue.prototype.Root='/meta-manager/';//'meta-manager/'
+Vue.prototype.Root=root;//'meta-manager/'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
