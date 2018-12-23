@@ -191,23 +191,23 @@
         name:'DataAssetChange',
         data(){
             return {
-                data:[],
+                data:[],//下拉数据
                 data1:[],
                 data2:[],
                 data3:[],
                 data4:[],
                 dataList:[],
-                textVal1:'下拉列表',
+                textVal1:'下拉列表',//下拉默认值
                 textVal2:'下拉列表',
                 textVal3:'下拉列表',
                 textVal4:'下拉列表',
                 textVal5:'下拉列表',
                 textVal6:'下拉列表',
-                dialogVisible: false,
+                dialogVisible: false,//遮罩提示
                 dialogVisible2:false,
-                currentPage4: 4,
+                currentPage4: 4,//分页器
                 totalCount:0,
-                pickerOptions2: {
+                pickerOptions2: {//日期查询器
                     shortcuts: [{
                         text: '最近一周',
                         onClick(picker) {
@@ -235,7 +235,7 @@
                     }]
                 },
                 value7: '',
-                obj:{
+                obj:{//数据默认
                     "professionalPlateID":'',
                     "firstClassificationID":'',
                     "secondClassificationID":'',
@@ -291,6 +291,7 @@
             maintain(){
                 this.$router.push('/DataClassification');
             },
+            /*----数据删除请求----*/
             handleClose(){
                 var _this=this;
                 $.ajax({
@@ -533,6 +534,7 @@
                 }
                 
             },
+            /*----警告-----*/
             warning1(){
                 if(this.data.length<=0||this.data1.length<=0){
                     this.open4()

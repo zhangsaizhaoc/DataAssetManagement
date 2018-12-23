@@ -311,7 +311,7 @@
   
         userUploadFile: [],
   
-        data: [],
+        data: [],//下拉数据
   
         data1: [],
   
@@ -321,7 +321,7 @@
   
         data4: [],
   
-        textVal1: '下拉列表',
+        textVal1: '下拉列表',//下拉默认
   
         textVal2: '下拉列表',
   

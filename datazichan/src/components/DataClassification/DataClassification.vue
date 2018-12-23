@@ -113,29 +113,29 @@
         data() {
             return {
                 data: [], //数据
-                classificationlevelname: '专业板块', //
-                currentPage4: 4,
+                classificationlevelname: '专业板块', //默认数据
+                currentPage4: 4,//分页
                 totalCount: 0,
                 list: null,
                 ind:1,
-                dataLIst:[],
-                dialogFormVisible: false,
-                dialogFormVisible2: false,
-                ruleForm: {
+                dataLIst:[],//父节点名称下拉
+                dialogFormVisible: false,//控制分类维护页新增
+                dialogFormVisible2: false,//控制分类维护页修改
+                ruleForm: {//分类维护页新增
                     name: '',
                     region: '',
                     dat1: '',
                     dat2: '',
                     ind:0
                 },
-                ruleForm2: {
+                ruleForm2: {//分类维护页修改
                     name: '',
                     region: '',
                     dat1: '',
                     dat2: '',
                     ind:0
                 },
-                rules: {
+                rules: {//分类维护页新增
                     name: [
                         { required: true, message: '分类级别', trigger: 'blur' },
                         { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
@@ -151,7 +151,7 @@
                         { required: true, message: '父节点名称', trigger: 'change' }
                     ],
                 },
-                rules2: {
+                rules2: {//分类维护页修改
                     name: [
                         { required: true, message: '分类级别', trigger: 'blur' },
                         { min: 0, max: 10, message: '长度在 0 到 10 个字符', trigger: 'blur' }
@@ -167,7 +167,7 @@
                         { required: true, message: '父节点名称', trigger: 'change' },
                     ],
                 },
-                isRouterAlive3:true
+                isRouterAlive3:true,//控制页面刷新
             }
         },
         inject: ['reload','reload2'],
@@ -193,11 +193,13 @@
         watch: {
         },
         methods: {
+            /*----刷新----*/
             reload3() {
                 this.isRouterAlive3 = false
                 this.$nextTick(() => (this.isRouterAlive3 = true))
                 var _this=this;
             },
+            /*----修改----*/
             xiangqingxiugai(data){
                 this.dialogFormVisible2=true;
                 console.log(data)
@@ -340,9 +342,11 @@
                 }
                 });
             },
+            /*----重置修改||增加----*/
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
+            /*----弹出遮罩提示----*/
             open(data) {
     
                 var teval = '';

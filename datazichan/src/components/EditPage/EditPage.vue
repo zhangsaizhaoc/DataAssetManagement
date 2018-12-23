@@ -354,12 +354,12 @@
                 flag:false,
                 textVale:"浏览",
                 userUploadFile: [],
-                data:[],
+                data:[],//下拉数据
                 data1:[],
                 data2:[],
                 data3:[],
                 data4:[],
-                textVal1:'下拉列表',
+                textVal1:'下拉列表',//下拉默认
                 textVal2:'下拉列表',
                 textVal3:'下拉列表',
                 textVal4:'下拉列表',
@@ -369,10 +369,10 @@
                 textVal8:'下拉列表',
                 textVal9:'下拉列表',
                 getdat:[],
-                obj1:{
+                obj1:{//数据请求改变
                    
                 },
-                obj:{
+                obj:{//数据定义
                     "businessdefinition": "供应商名称在财务系统中定义",//业务定义
                     "quotedstandard": "《新奥集团供应商信息编码及属性规范》",//引用标准
                     "businessrule": "1、供应商名称唯一，生成后通过修改流程审核后可以变更;2、供应商名称通常为企业法人的营业执照名称，特殊情况下个人也可成为供应商",//业务规则
@@ -607,6 +607,7 @@
                 }
                 
             },
+            /*----默认数据赋值----*/
             Assignment(data){
                 var data=data?data:{}
                 console.log(data);

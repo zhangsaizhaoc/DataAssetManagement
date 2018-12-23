@@ -457,6 +457,7 @@
             })
         },
         methods:{
+            /*----限定字数----*/
             WordLimit1(){
                 this.yewudynum=500-this.yewudyval.length;
                 var textval=''
@@ -782,6 +783,7 @@
                 console.log(files[0])
                 fileReader.readAsBinaryString(files[0]);
             },
+            /*----下拉警告----*/
             warning1(){
                 if(this.data.length<=0||this.data1.length<=0){
                     this.open4()

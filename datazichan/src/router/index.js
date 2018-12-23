@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Index from '@/components/index/index'// 数据实体页
-import Supplier from '@/components/Supplier/Supplier'//
-import AssetContentCreation from '@/components/AssetContentCreation/AssetContentCreation'//
-import DataAssetChange from '@/components/DataAssetChange/DataAssetChange'//
-import EditPage from '@/components/EditPage/EditPage'//
-import DataClassification from '@/components/DataClassification/DataClassification'//
-import Details from '@/components/Details/Details'//
+import Supplier from '@/components/Supplier/Supplier'//业务
+import AssetContentCreation from '@/components/AssetContentCreation/AssetContentCreation'//创建
+import DataAssetChange from '@/components/DataAssetChange/DataAssetChange'//内容维护
+import EditPage from '@/components/EditPage/EditPage'//修改
+import DataClassification from '@/components/DataClassification/DataClassification'//分类维护
+import Details from '@/components/Details/Details'//详情
 
 Vue.use(Router)
 
