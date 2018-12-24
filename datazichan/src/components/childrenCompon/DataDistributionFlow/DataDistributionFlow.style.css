@@ -97,10 +97,7 @@
     margin-top: -0.5px;
 }
 .tulist{
-    width: 200px;
-    position: fixed;
-    left:400px;
-    bottom: 50px;
+    width: 130px;
 }
 .tulist li{
     width: 100%;  
