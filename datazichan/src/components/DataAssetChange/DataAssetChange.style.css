@@ -218,5 +218,6 @@ transform: rotate()旋转，border边框，border-radius圆角，font-size字体
     padding: 8px 14px;
     border-radius: 6px;
     color:#fff;
+    cursor: pointer;
     background: rgba(3, 240, 248, 0.867);
 }

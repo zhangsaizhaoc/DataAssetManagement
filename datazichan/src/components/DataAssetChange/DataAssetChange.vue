@@ -250,7 +250,6 @@
                     "endTime":""
                 },
                 chuanshu:{}
-            
             }
         },
         inject:['reload'],

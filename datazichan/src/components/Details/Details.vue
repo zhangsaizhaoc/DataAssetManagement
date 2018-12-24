@@ -300,41 +300,23 @@
   export default {
   
     name: 'Details',
-  
     data() {
-  
       return {
-  
         flag: false,
-  
         textVale: "浏览",
-  
         userUploadFile: [],
-  
         data: [],//下拉数据
-  
         data1: [],
-  
         data2: [],
-  
         data3: [],
-  
         data4: [],
-  
         textVal1: '下拉列表',//下拉默认
-  
         textVal2: '下拉列表',
-  
         textVal3: '下拉列表',
-  
         textVal4: '下拉列表',
-  
         textVal5: '下拉列表',
-  
         textVal6: '下拉列表',
-  
         textVal7: '下拉列表',
-  
         textVal8: '下拉列表',
         textVal9: '下拉列表',
         getdat: [],
@@ -403,9 +385,6 @@
       })
       this.dis();
     },
-  
-  
-  
     methods: {
       /*----返回----*/
       returnsa(){
@@ -413,172 +392,91 @@
       },
       /*----禁用所用input----*/
       dis() {
-  
         var inp = $('input');
-  
         for (var i = 0; i < inp.length; i++) {
-  
           inp[i].disabled = 'disabled'
-  
         }
-  
       },
   
       /*----修改后重复值----*/
   
       getDataAx(datas) {
-  
         var _this = this;
-  
         $.ajax({
-  
           url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
-  
           dataType: "json",
-  
           method: 'POST',
-  
           data: {
-  
             "parentclassificationid": 0
-  
           },
-  
           success: function(data) {
-  
             console.log(data);
-  
             data.data ? data.data.forEach((item, index) => {
-  
               if (item.classificationid == datas.professionalPlateID) {
-  
                 _this.textVal1 = item.classificationname;
-  
               }
-  
             }) : []
-  
             _this.data = data.data ? data.data : []
-  
           }
-  
         });
-  
         if (datas.firstClassificationID) {
-  
           console.log(datas.firstClassificationID)
-  
           $.ajax({
-  
             url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
-  
             dataType: "json",
-  
             method: 'POST',
-  
             data: {
-  
               "parentclassificationid": datas.professionalPlateID
-  
             },
-  
             success: function(data) {
-  
               console.log(data);
-  
               data.data ? data.data.forEach((item, index) => {
-  
                 if (item.classificationid == datas.firstClassificationID) {
-  
                   _this.textVal2 = item.classificationname;
-  
                 }
-  
               }) : []
               _this.data1 = data.data;
             }
           })
         }
         if (datas.secondClassificationID) {
-  
           $.ajax({
-  
             url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
-  
             dataType: "json",
-  
             method: 'POST',
-  
             data: {
-  
               "parentclassificationid": datas.firstClassificationID
-  
             },
-  
             success: function(data) {
-  
               console.log(data);
-  
               data.data ? data.data.forEach((item, index) => {
-  
                 if (item.classificationid == datas.secondClassificationID) {
-  
                   _this.textVal3 = item.classificationname;
-  
                 }
-  
               }) : []
-  
               _this.data2 = data.data;
-  
             }
-  
           })
-  
         }
-  
-  
-  
         if (datas.thirdClassificationID) {
-  
           $.ajax({
-  
             url: `${this.Root}datagovern/contentbaseinfo/findByParent`,
-  
             dataType: "json",
-  
             method: 'POST',
-  
             data: {
-  
               "parentclassificationid": datas.secondClassificationID
-  
             },
-  
             success: function(data) {
-  
               console.log(data);
-  
               data.data ? data.data.forEach((item, index) => {
-  
                 if (item.classificationid == datas.thirdClassificationID) {
-  
                   _this.textVal4 = item.classificationname;
-  
                 }
-  
               }) : []
-  
               _this.data3 = data.data;
-  
             }
-  
           })
-  
         }
-  
-  
-  
         if (datas.fourthClassificationID) {
   
           $.ajax({
