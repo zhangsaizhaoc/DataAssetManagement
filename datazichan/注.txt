@@ -1,0 +1,41 @@
+1.下载到本地
+2.cnpm || npm   install
+3.npm run dev 
+
+文件名称与作用
+iconfont 页面icon图标
+css全局样式
+App 主页面 显示了树形菜单与布局
+main 引入其他ui框架等
+router 路由配置
+AssetContentCreation  创建页面 用于单条创建与批量导入
+DataAssetChange  数据内容维护页面 用于更改数据内容与删除数据
+DataClassification  数据分类维护  用于更改数据类型，创建数据类型，修改数据类型
+Details   数据详情 只用于查看数据
+EditPage 修改页面  用于查看修改数据
+index  数据实体页面   用于显示数据基本情况等
+childrenCompon  为index下的子组件
+Supplier   用于显示业务管理技术属性  
+SupplierChildrenCompon   为Supplier下的子组件
+HelloWorld 为起始页
+
+打包上线
+命令：npm run build
+生成dist
+
+数据交互
+Jquery
+$.ajax
+参数请参考
+（数据资产内容维护接口）
+ 数据导入模板 参考exporTemplate
+
+
+
+
+
+
+
+
+
+

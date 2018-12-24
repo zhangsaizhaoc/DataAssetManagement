@@ -388,16 +388,16 @@
                 flag:false,
                 textVale:"浏览",
                 userUploadFile: [],
-                yewudynum:500,
-                yewudyval:'',
+                yewudynum:500,//默认字数
+                yewudyval:'',//获取的字段
                 yewugznum:500,
                 yewugzval:'',
-                data:[],
+                data:[],//下拉数据
                 data1:[],
                 data2:[],
                 data3:[],
                 data4:[],
-                textVal1:'下拉列表',
+                textVal1:'下拉列表',//下拉默认值
                 textVal2:'下拉列表',
                 textVal3:'下拉列表',
                 textVal4:'下拉列表',
