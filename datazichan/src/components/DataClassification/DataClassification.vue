@@ -223,17 +223,16 @@
                 console.log(val)
                 var _this=this;
                 $.ajax({
-                    url: `${this.Root}datagovern/classification/findByLevel`,
+                    url: `${this.Root}datagovern/classification/findByLevelAll`,
                     dataType: "json",
                     method: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify({
-                        "classificationlevelname": val,
-                        "rows":'100'
+                        "classificationlevelname": val
                     }),
                     success: function(data) {
                         console.log(data); 
-                        _this.dataLIst=data.data.datas?data.data.datas:[];
+                        _this.dataLIst=data.data?data.data:[];
                     }
                 })
             },
