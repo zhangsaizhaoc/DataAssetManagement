@@ -11,8 +11,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // "/": 'http://10.37.148.35:8090/'
-      "/": 'http://10.2.96.57:8080/'
+      "/": 'http://10.37.148.35:8090/'
+      // "/": 'http://10.2.96.57:8080/'
 
     },
 

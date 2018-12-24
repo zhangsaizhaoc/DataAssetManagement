@@ -171,6 +171,9 @@
                 isRouterAlive3:true,//控制页面刷新
                 textVal1:'',
                 textVal2:'',
+                nameId1:0,
+                nameId2:0,
+
             }
         },
         inject: ['reload','reload2'],//刷新页面
@@ -203,9 +206,17 @@
             },
             /*----修改----*/
             xiangqingxiugai(data){
+                this.ruleForm2={//分类维护页新增
+                        name:'',
+                        region: '',
+                        dat1: '',
+                        dat2: '',
+                        ind:0
+                    }
                 this.dialogFormVisible2=true;
                 console.log(data)
                 this.ruleForm2.name=data.classificationid;
+                this.nameId2=data.classificationid;
                 this.ruleForm2.dat1=data.classificationname;
                 this.textVal2=data.classificationname;
                 this.ruleForm.dat2=data.parentclassificationlevelname;
@@ -215,11 +226,19 @@
             /*----添加----*/
             add() {
                 this.dialogFormVisible = true;
+                this.ruleForm={//分类维护页新增
+                        name:'',
+                        region: '',
+                        dat1: '',
+                        dat2: '',
+                        ind:0
+                    }
                 var tds=this.$refs.tbody.rows[0]?this.$refs.tbody.rows[0].querySelectorAll('td'):'';
                 this.ruleForm.name=tds[1]? tds[1].innerHTML:'四级业务域';
                 this.textVal1=tds[1]? tds[1].innerHTML:'四级业务域';
                 this.ruleForm.ind=tds[1] ? tds[1].getAttribute("ind"):"5";
                 this.ruleForm.dat2=tds[3]? tds[3].innerHTML:'三级业务域';
+                this.nameId2=tds[3]? tds[3].innerHTML:'三级业务域';
                 this.dataGet(this.ruleForm.dat2);
             },
             /*----获取数据父节点名称----*/ 
@@ -353,12 +372,12 @@
                         name:_this.textVal1,
                         region: '',
                         dat1: '',
-                        dat2: '',
+                        dat2: _this.nameId2,
                         ind:0
                     }
                 }else if(formName=='ruleForm2'){
                     this.ruleForm2={//分类维护页新增
-                        name: '',
+                        name: _this.nameId2,
                         region: '',
                         dat1:_this.textVal2,
                         dat2: '',
