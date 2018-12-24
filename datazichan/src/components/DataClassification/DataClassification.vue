@@ -13,7 +13,7 @@
         </div>
         <div class="bottom">
             <div class="box">
-                <h5>专业板块分类维护</h5>
+                <h5>{{titleText}}分类维护</h5>
                 <div class="inbox">
                     <h6 @click="add"><i class="el-icon-circle-plus-outline"></i> 增加</h6>
                     <h5 @click='returns'>
@@ -121,6 +121,7 @@
                 dataLIst:[],//父节点名称下拉
                 dialogFormVisible: false,//控制分类维护页新增
                 dialogFormVisible2: false,//控制分类维护页修改
+                titleText:'专业模块',
                 ruleForm: {//分类维护页新增
                     name: '',
                     region: '',
@@ -170,8 +171,7 @@
                 isRouterAlive3:true,//控制页面刷新
             }
         },
-        inject: ['reload','reload2'],
-        
+        inject: ['reload','reload2'],//刷新页面
         mounted() {
             var _this = this;
             $.ajax({
@@ -395,8 +395,10 @@
                                 tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
                                 console.log(tds)
                                 for(var i=0;i<b.length;i++){
-                                    if(tds==b[i].innerHTML)
-                                    b[i].className='clicka';
+                                    if(tds==b[i].innerHTML){
+                                        b[i].className='clicka';
+                                        _this.titleText=b[i].innerHTML;
+                                    }
                                 }
                             },10)
                         }
@@ -422,8 +424,10 @@
                                 tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
                                 console.log(tds)
                                 for(var i=0;i<b.length;i++){
-                                    if(tds==b[i].innerHTML)
-                                    b[i].className='clicka';
+                                    if(tds==b[i].innerHTML){
+                                        b[i].className='clicka';
+                                        _this.titleText=b[i].innerHTML;
+                                    }
                                 }
                             },10)
                         }
@@ -447,8 +451,10 @@
                                 tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
                                 console.log(tds)
                                 for(var i=0;i<b.length;i++){
-                                    if(tds==b[i].innerHTML)
-                                    b[i].className='clicka';
+                                    if(tds==b[i].innerHTML){
+                                        b[i].className='clicka';
+                                        _this.titleText=b[i].innerHTML;
+                                    }
                                 }
                             },10)
                         }
@@ -494,8 +500,10 @@
                             tds=_this.$refs.tbody.rows[0].querySelectorAll('td')[1].innerHTML;
                             console.log(tds)
                             for(var i=0;i<b.length;i++){
-                                if(tds==b[i].innerHTML)
-                                b[i].className='clicka';
+                                if(tds==b[i].innerHTML){
+                                    b[i].className='clicka';
+                                    _this.titleText=b[i].innerHTML;
+                                }
                             }
                         },10)
                         
@@ -679,7 +687,8 @@
                     if (target === b[i]) { //判断点击的是否是一个b
                         this.classificationlevelname = b[i].innerHTML;
                         var value = parseInt(i);
-                        b[i].className = 'clicka'
+                        b[i].className = 'clicka';
+                        this.titleText=b[i].innerHTML;
                     }
                 }
                 this.getData();

@@ -10,7 +10,6 @@ import DataClassification from '@/components/DataClassification/DataClassificati
 import Details from '@/components/Details/Details'//详情
 
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {

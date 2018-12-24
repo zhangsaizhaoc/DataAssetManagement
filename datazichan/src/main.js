@@ -25,11 +25,12 @@ var root = process.env.API_ROOT
 //   return str;
 // }
 Vue.prototype.Root=root;//'meta-manager/'
+/*-------------引入ElementUI---------------*/
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/index.css'//elementUi样式
 Vue.use(ElementUI)
-import './css/style.css'
-import './iconfont/iconfont.js'
+import './css/style.css'//全局样式
+import './iconfont/iconfont.js'//icon图标
 // import './/at.alicdn.com/t/font_965552_86jtd7c5ucx.js'
 /* eslint-disable no-new */
 new Vue({
